@@ -46,12 +46,11 @@ class Link(models.Model):
     is_starred = models.BooleanField(default=False, blank=True)
 
     def save(self, *args, **kwargs):
-        if (extracted_title := get_link_title(self.url)) is not None:
-            self.title = extracted_title.strip().capitalize()
+        self.title = get_link_title(self.url).strip().capitalize()
         super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title[:50]
 
     class Meta:
-        ordering = ["-save_date", "-has_been_read", "is_starred"]
+        ordering = ["-save_date", "-has_been_read"]

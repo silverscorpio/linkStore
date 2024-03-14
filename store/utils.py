@@ -7,3 +7,4 @@ def get_link_title(url: str) -> str:
     if r.status_code == 200:
         soup = BeautifulSoup(r.content, features="html.parser")
         return soup.head.title.string
+    return ""
