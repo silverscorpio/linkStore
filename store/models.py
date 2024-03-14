@@ -37,7 +37,9 @@ class Link(models.Model):
     title = models.CharField(max_length=200)
     url = models.URLField()
     save_date = models.DateField(auto_now_add=True)
-    type = models.IntegerField(choices=LinkType, blank=False, null=False)
+    type = models.IntegerField(
+        choices=LinkType, default=LinkType.ARTICLE, blank=False, null=False
+    )
     tag = models.ManyToManyField(
         Tag, related_name="tagged_links", blank=True, null=True
     )
@@ -50,7 +52,7 @@ class Link(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.title[:50]
+        return f"{self.title[:25]} ..."
 
     class Meta:
         ordering = ["-save_date", "-has_been_read"]
