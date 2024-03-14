@@ -25,11 +25,11 @@ class Topic(models.Model):
 
 
 class Link(models.Model):
-    class LinkType(models.IntegerChoices):
-        ARTICLE = 1
-        VIDEO = 2
-        IMAGE = 3
-        AUDIO = 4
+    class LinkType(models.TextChoices):
+        ARTICLE = "article"
+        VIDEO = "video"
+        IMAGE = "image"
+        AUDIO = "audio"
 
     topic = models.ForeignKey(
         Topic, on_delete=models.PROTECT, related_name="topic_links"
@@ -37,9 +37,7 @@ class Link(models.Model):
     title = models.CharField(max_length=200)
     url = models.URLField()
     save_date = models.DateField(auto_now_add=True)
-    type = models.IntegerField(
-        choices=LinkType, default=LinkType.ARTICLE, blank=False, null=False
-    )
+    type = models.IntegerField(choices=LinkType, default=LinkType.ARTICLE)
     tag = models.ManyToManyField(
         Tag, related_name="tagged_links", blank=True, null=True
     )
@@ -55,4 +53,4 @@ class Link(models.Model):
         return f"{self.title[:25]} ..."
 
     class Meta:
-        ordering = ["-save_date", "-has_been_read"]
+        ordering = ["-save_date", "has_been_read"]
