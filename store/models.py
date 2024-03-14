@@ -46,7 +46,8 @@ class Link(models.Model):
     is_starred = models.BooleanField(default=False, blank=True)
 
     def save(self, *args, **kwargs):
-        self.title = get_link_title(self.url).strip().capitalize()
+        if not self.title:
+            self.title = get_link_title(self.url).strip().capitalize()
         super().save(*args, **kwargs)
 
     def __str__(self):
