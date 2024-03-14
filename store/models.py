@@ -28,14 +28,23 @@ class Link(models.Model):
         READ = 1
         UNREAD = 2
 
+    class LinkType(models.IntegerChoices):
+        ARTICLE = 1
+        VIDEO = 2
+        IMAGE = 3
+        AUDIO = 4
+
     title = models.CharField(max_length=200)
     url = models.URLField()
     save_date = models.DateField(auto_now_add=True)
     topic = models.ForeignKey(
-        Topic, on_delete=models.CASCADE, related_name="topic_links"
+        Topic, on_delete=models.PROTECT, related_name="topic_links"
     )
-    read_status = models.IntegerField(choices=ReadStatus, default=ReadStatus.UNREAD)
+    read_status = models.IntegerField(
+        choices=ReadStatus, default=ReadStatus.UNREAD
+    )  # TODO 'read on' date
     note = models.TextField(blank=True, null=True)
+    type = models.IntegerField(choices=LinkType, blank=False, null=False)
     tag = models.ManyToManyField(
         Tag, related_name="tagged_links", blank=True, null=True
     )
