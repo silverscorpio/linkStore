@@ -38,9 +38,7 @@ class Link(models.Model):
     url = models.URLField()
     save_date = models.DateField(auto_now_add=True)
     type = models.IntegerField(choices=LinkType, default=LinkType.ARTICLE)
-    tag = models.ManyToManyField(
-        Tag, related_name="tagged_links", blank=True, null=True
-    )
+    tag = models.ManyToManyField(Tag, related_name="tagged_links", blank=True)
     note = models.TextField(blank=True, null=True)
     has_been_read = models.BooleanField(default=False, blank=True)
     is_starred = models.BooleanField(default=False, blank=True)
