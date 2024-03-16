@@ -48,8 +48,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # hello-made
+    # panda
     "store",
+    # third-party
+    "django_bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -134,3 +136,8 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Bootstrap settings
+BOOTSTRAP5 = {
+    "theme_url": "https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/darkly/bootstrap.min.css",
+}
