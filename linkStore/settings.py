@@ -44,6 +44,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # panda
     "store",
+    "users",
     # third-party
     "django_bootstrap5",
     "django.contrib.admin",
