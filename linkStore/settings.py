@@ -42,16 +42,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # panda
+    "store",
+    # third-party
+    "django_bootstrap5",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # panda
-    "store",
-    # third-party
-    "django_bootstrap5",
 ]
 
 MIDDLEWARE = [
