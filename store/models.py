@@ -20,6 +20,10 @@ class Topic(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        self.name = self.name.strip().capitalize()
+        super().save(*args, **kwargs)
+
     class Meta:
         ordering = ["-creation_date"]
 
