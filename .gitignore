@@ -4,3 +4,4 @@ linkStore/__pycache__/
 store/__pycache__/
 store/migrations/__pycache__/
 store/data/
+users/__pycache__/
