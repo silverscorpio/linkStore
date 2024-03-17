@@ -1,32 +1,42 @@
 {% extends 'store/base.html' %}
 {% load static %}
-<img src="{% static 'store/landing_bg.jpg' %}" class="img-fluid" alt="landing-page-bg">
 {% block content %}
 
-    {% if form.errors %}
-        <p class="text-warning">Incorrect credentials</p>
-    {% endif %}
-    <form method="post" action="{% url 'users:login' %}">
-        {% csrf_token %}
+    <img src="{% static 'store/landing_bg.jpg' %}" class="img-fluid" alt="landing-page-bg">
+    <div class="container-fluid
+position-absolute top-50 start-50 translate-middle"
+    >
+        <div class="position-absolute top-50 start-50 translate-middle
+        p-3 mb-2 bg-light text-dark
+        shadow-lg p-3 mb-5 bg-body-tertiary rounded">
 
-        <div class="grid gap-0 row-gap-3">
-            <div>
-                <label for="for_username" class="form-label mt-4">Username</label>
-                <input type="text" name="username" class="form-control" id="for_username"
-                       placeholder="Username">
-            </div>
-            <div>
-                <label for="for_password" class="form-label mt-4">Password</label>
-                <input type="password" name="password" class="form-control" id="for_password" placeholder="Password"
-                       autocomplete="off">
-            </div>
+            {% if form.errors %}
+                <p class="text-danger">Incorrect credentials</p>
+            {% endif %}
+            <form method="post" action="{% url 'users:login' %}">
+                {% csrf_token %}
 
-            <div class="p-2 g-col-6">
-                <button name="submit" class="btn btn-primary btn-sm">Log in</button>
-                <input type="hidden" name="next" value="{% url 'store:home' %}"/>
+                <div class="grid gap-0 row-gap-3">
+                    <div>
+                        <label for="for_username" class="form-label mt-4">Username</label>
+                        <input type="text" name="username" class="form-control" id="for_username"
+                               placeholder="Username">
+                    </div>
+                    <div>
+                        <label for="for_password" class="form-label mt-4">Password</label>
+                        <input type="password" name="password" class="form-control" id="for_password"
+                               placeholder="Password"
+                               autocomplete="off">
+                    </div>
+
+                    <div class="p-2 g-col-6">
+                        <button name="submit" class="btn btn-primary btn-sm">Log in</button>
+                        <input type="hidden" name="next" value="{% url 'store:home' %}"/>
 
 
-            </div>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 {% endblock content %}

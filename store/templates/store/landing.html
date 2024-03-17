@@ -1,9 +1,21 @@
 {% extends 'store/base.html' %}
+{% load static %}
 {% block content %}
-    <h1>Welcome to <small class="text-primary-emphasis"><em>Link Store</em></small></h1>
-    <p class="lead"><em>A central place for storing and managing links to your most interesting and important
-        webpages</em></p>
+
+    <img src="{% static 'store/landing_bg.jpg' %}" class="img-fluid" alt="landing-page-bg">
+    <div class="container-fluid
+    position-absolute top-50 start-50 translate-middle"
+    >
+        <div class="position-absolute top-50 start-50 translate-middle
+        p-3 mb-2 bg-light text-dark
+        shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+        <h1>Welcome to <small class="text-primary-emphasis"><em>Link Store</em></small></h1>
+        <p class="lead"><em>A central place for storing and managing links to your most interesting and important
+            webpages</em></p>
+        
+        <a href="{% url 'users:login' %}" class="btn btn-primary btn-lg">Login</a>
+        <a href="{% url 'users:login' %}" class="btn btn-primary btn-lg">Register</a>
+        </div>
+    </div>
     
-    <a href="{% url 'users:login' %}" class="btn btn-primary btn-lg">Login</a>
-    <a href="{% url 'users:login' %}" class="btn btn-primary btn-lg">Register</a>
 {% endblock content %}

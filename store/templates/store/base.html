@@ -10,16 +10,6 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 </head>
-<img src="{% static 'store/landing_bg.jpg' %}" class="img-fluid" alt="landing-page-bg">
-<div class="container-fluid
-position-absolute top-50 start-50 translate-middle"
->
-    <div class="position-absolute top-50 start-50 translate-middle
-    p-3 mb-2 bg-light text-dark
-    shadow-lg p-3 mb-5 bg-body-tertiary rounded">
         {% block content %}
         {% endblock %}
-
-    </div>
-</div>
 </html>
