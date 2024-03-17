@@ -8,27 +8,10 @@
     {% endif %}
     <form method="post" action="{% url 'users:login' %}">
         {% csrf_token %}
+        {{ form.as_p }}
 
-        <div class="grid gap-0 row-gap-3">
-            <div class="input-group mb-3">
-                <span class="input-group-text">@</span>
-                <div class="form-floating">
-                    <input type="text" class="p-2 g-col-6 form-control form-control-lg" id="floatingInputGroup1"
-                           placeholder="Username">
-                    <label for="floatingInputGroup1">Username</label>
-                </div>
-            </div>
+        <button name="submit" class="btn btn-primary btn-sm">Log in</button>
+        <input type="hidden" name="next" value="{% url 'store:home' %}"/>
 
-            <div class="form-floating">
-                <input type="password" class="p-2 g-col-6 form-control form-control-lg" id="floatingPassword"
-                       placeholder="Password">
-                <label for="floatingPassword">Password</label>
-            </div>
-
-            <div class="p-2 g-col-6">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-
-        </div>
     </form>
 {% endblock content %}

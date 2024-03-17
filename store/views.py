@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 
 def landing(request):
@@ -9,4 +8,4 @@ def landing(request):
 
 
 def home(request):
-    return HttpResponse(f"Hello, {request.user.username}")
+    return render(request, "store/home.html")
