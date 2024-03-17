@@ -3,10 +3,10 @@ from django.http import HttpResponse
 
 
 def landing(request):
+    if request.user.is_authenticated:
+        return render(request, "store/home.html")
     return render(request, "store/landing.html")
 
 
 def home(request):
-    if request.user.is_authenticated:
-        return render(request, "store/home.html")
-    return HttpResponse("Sorry, not logged in")
+    return HttpResponse(f"Hello, {request.user.username}")
