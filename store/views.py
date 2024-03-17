@@ -10,3 +10,11 @@ def landing(request):
 def store(request):
     # home page (after login) is the store - shows all
     return render(request, "store/store.html")
+
+
+def topics(request):
+    return render(request, "store/topics.html")
+
+
+def tags(request):
+    return render(request, "store/tags.html")

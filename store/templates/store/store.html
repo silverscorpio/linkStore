@@ -7,20 +7,25 @@
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link active" href="#">Store
-                           
+
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Topics</a>
+                        <a class="nav-link" href="{% url 'store:topics' %}">Topics</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tags</a>
+                        <a class="nav-link" href="{% url 'store:tags' %}">Tags</a>
                     </li>
                 </ul>
                 <div>
                     <ul class="navbar-nav me-auto">
                         <li><a class="nav-link" href="#">Profile</a></li>
-                        <li ><a class="nav-link" href="#">Logout</a></li>
+                        <li>
+                            <form method="post" action="{% url 'users:logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-link">Logout</button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>
