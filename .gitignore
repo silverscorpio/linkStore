@@ -3,5 +3,6 @@
 linkStore/__pycache__/
 store/__pycache__/
 store/migrations/__pycache__/
-store/data/
+store/data/*.json
+store/data/*.txt
 users/__pycache__/
