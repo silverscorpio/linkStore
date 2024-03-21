@@ -7,7 +7,7 @@ class Tag(models.Model):
     creation_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.name.lower()
 
     class Meta:
         ordering = ["-creation_date"]
@@ -18,10 +18,10 @@ class Topic(models.Model):
     creation_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.name.title()
 
     def save(self, *args, **kwargs):
-        self.name = self.name.strip().capitalize()
+        self.name = self.name.strip()
         super().save(*args, **kwargs)
 
     class Meta:
@@ -80,7 +80,7 @@ class Link(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.topic} - {self.title[:50]} ..."
+        return f"{self.title[:50]} ..."
 
     class Meta:
         ordering = ["-save_date", "has_been_read"]
