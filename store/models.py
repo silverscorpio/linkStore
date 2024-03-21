@@ -41,7 +41,7 @@ class Link(models.Model):
     title = models.CharField(max_length=200)
     url = models.URLField()
     save_date = models.DateField(auto_now_add=True)
-    type = models.IntegerField(choices=LinkType, default=LinkType.ARTICLE)
+    type = models.CharField(choices=LinkType, default=LinkType.ARTICLE)
     tag = models.ManyToManyField(Tag, related_name="tagged_links", blank=True)
     note = models.TextField(blank=True, null=True)
     has_been_read = models.BooleanField(default=False, blank=True)

@@ -6,5 +6,6 @@ def get_link_title(url: str) -> str:
     r = httpx.get(url)
     if r.status_code == 200:
         soup = BeautifulSoup(r.content, features="html.parser")
-        return soup.head.title.string
+        if soup.head:
+            return soup.head.title.string
     return ""
