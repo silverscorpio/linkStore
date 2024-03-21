@@ -39,9 +39,9 @@ class Link(models.Model):
         Topic, on_delete=models.PROTECT, related_name="topic_links"
     )
     title = models.CharField(max_length=200)
-    url = models.URLField()
+    url = models.URLField(max_length=600)
     save_date = models.DateField(auto_now_add=True)
-    type = models.CharField(choices=LinkType, default=LinkType.ARTICLE)
+    type = models.CharField(max_length=10, choices=LinkType, default=LinkType.ARTICLE)
     tag = models.ManyToManyField(Tag, related_name="tagged_links", blank=True)
     note = models.TextField(blank=True, null=True)
     has_been_read = models.BooleanField(default=False, blank=True)
@@ -55,7 +55,7 @@ class Link(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.title[:25]} ..."
+        return f"{self.topic} - {self.title[:50]} ..."
 
     class Meta:
         ordering = ["-save_date", "has_been_read"]
