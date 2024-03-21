@@ -50,6 +50,8 @@ class Link(models.Model):
     def save(self, *args, **kwargs):
         if not self.title:
             self.title = get_link_title(self.url).strip().capitalize()
+        if "youtube" in self.url:
+            self.type = Link.LinkType.VIDEO
         super().save(*args, **kwargs)
 
     def __str__(self):
