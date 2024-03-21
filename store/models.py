@@ -34,6 +34,7 @@ class Link(models.Model):
         VIDEO = "video"
         IMAGE = "image"
         AUDIO = "audio"
+        DOCUMENT = "document"
 
     topic = models.ForeignKey(
         Topic, on_delete=models.PROTECT, related_name="topic_links"
@@ -46,6 +47,30 @@ class Link(models.Model):
     note = models.TextField(blank=True, null=True)
     has_been_read = models.BooleanField(default=False, blank=True)
     is_starred = models.BooleanField(default=False, blank=True)
+
+    def pre_process_link_type(self) -> None:
+        if "youtube" in self.url:
+            self.type = Link.LinkType.VIDEO
+
+        elif self.url.endswith(
+            (
+                "pdf",
+                "doc",
+                "ppt",
+            )
+        ):
+            self.type = Link.LinkType.DOCUMENT
+
+        elif self.url.endswith(
+            (
+                "jpg",
+                "jpeg",
+                "png",
+                "bmp",
+                "svg",
+            )
+        ):
+            self.type = Link.LinkType.IMAGE
 
     def save(self, *args, **kwargs):
         if not self.title:
