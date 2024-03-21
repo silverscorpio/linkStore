@@ -5,7 +5,7 @@ app_name = "store"
 
 urlpatterns = [
     path("", views.landing, name="landing"),
-    path("store/", views.store, name="store"),
-    path("topics/", views.topics, name="topics"),
-    path("tags/", views.tags, name="tags"),
+    path("admin/store/link/", views.store, name="links"),
+    path("admin/store/topic/", views.topics, name="topics"),
+    path("admin/store/tag/", views.tags, name="tags"),
 ]
