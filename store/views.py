@@ -1,20 +1,21 @@
 from django.shortcuts import render
+from django.views import generic
+from .models import Link, Topic, Tag
 
 
 def landing(request):
     if request.user.is_authenticated:
-        return render(request, "store/links.html")
+        return render(request, "store/link_list.html")
     return render(request, "store/landing.html")
 
 
-def links(request):
-    # home page (after login) is the store - shows all
-    return render(request, "store/links.html")
+class LinkListView(generic.ListView):
+    model = Link
 
 
-def topics(request):
-    return render(request, "store/topics.html")
+class TopicListView(generic.ListView):
+    model = Topic
 
 
-def tags(request):
-    return render(request, "store/tags.html")
+class TagListView(generic.ListView):
+    model = Tag
