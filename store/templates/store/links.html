@@ -1,35 +1,5 @@
-{% extends 'store/base.html' %}
+{% extends 'store/pages.html' %}
 {% load static %}
-{% block content %}
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarColor01">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'store:links' %}">Store
-
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'store:topics' %}">Topics</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'store:tags' %}">Tags</a>
-                    </li>
-                </ul>
-                <div>
-                    <ul class="navbar-nav me-auto">
-                        <li><a class="nav-link" href="#">Profile</a></li>
-                        <li>
-                            <form method="post" action="{% url 'users:logout' %}">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-link">Logout</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <h2>Hello, {{ user.username }}</h2>
+{% block pages_content %}
+    <h2>Links</h2>
 {% endblock %}
