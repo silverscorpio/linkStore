@@ -13,6 +13,12 @@ def main(save_as_json: bool = False) -> dict:
             for i in data
         ]
 
+        # for removing utm query parameter - case 1 (first query param)
+        data = [i.split("?utm_")[0] if "?utm_" in i else i for i in data]
+
+        # for removing utm query parameter - case 2 (not the first query param)
+        data = [i.split("&utm_")[0] if "&utm_" in i else i for i in data]
+
     parsed_data = {}  # notes with URLs (URL notes removed)
     topics = [
         (idx, i.strip())
@@ -31,7 +37,7 @@ def main(save_as_json: bool = False) -> dict:
             ]
 
     if save_as_json:
-        with open(f"{os.getcwd()}/parsed_data.json", "w") as f:
+        with open(f"{os.getcwd()}/parsed_link_data1.json", "w") as f:
             json.dump(parsed_data, f)
 
     for k, v in parsed_data.items():
