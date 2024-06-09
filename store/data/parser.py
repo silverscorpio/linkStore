@@ -1,10 +1,22 @@
-# script to parse existing note of links for storing in DB
 import os
 import json
 
 
-def main(save_as_json: bool = False) -> dict:
-    with open("links.txt") as f:
+def links_parser(
+    txt_file: str = "links_data.txt",
+    save_as_json: bool = False,
+    saved_file: str = "parsed_links_data",
+) -> dict:
+    """
+    Extract and parse notes from text file (manually (!) created from original apple notes app)
+
+    :param txt_file: notes in plain text file copied manually from apple notes
+    :param save_as_json: if to save to json or just parse
+    :param saved_file: file name to be saved to (JSON)
+    :return: dict object with topics as keys and corresponding values as list of links
+    """
+
+    with open(txt_file) as f:
         data = f.readlines()
         data = data[1:]
         data = [i.strip() for i in data if i != "\n"]
@@ -37,14 +49,15 @@ def main(save_as_json: bool = False) -> dict:
             ]
 
     if save_as_json:
-        with open(f"{os.getcwd()}/parsed_link_data1.json", "w") as f:
+        with open(f"{os.getcwd()}/{saved_file}.json", "w") as f:
             json.dump(parsed_data, f)
 
     for k, v in parsed_data.items():
         print(f"{k} - {len(v)}")
+
     return parsed_data
 
 
 if __name__ == "__main__":
     # pprint(main(save_as_json=False), indent=4)
-    main(save_as_json=True)
+    links_parser(save_as_json=True)
