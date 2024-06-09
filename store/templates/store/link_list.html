@@ -3,22 +3,27 @@
 {% block content_list %}
     <thead class="h6">
     <tr>
-        <th scope="col">#</th>
-        <th scope="col">Title</th>
-        <th scope="col">Topic</th>
-        <th scope="col">Date Saved</th>
-        <th scope="col">Type</th>
-        <th scope="col">Read</th>
-        <th scope="col">Marked</th>
+        <th scope="col"><h3>#</h3></th>
+        <th scope="col"><h3>Title</h3></th>
+        <th scope="col"><h3>Topic</h3></th>
+        <th scope="col"><h3>Date</h3></th>
+        <th scope="col"><h3>Type</h3></th>
+        <th scope="col"><h3>Status</h3></th>
+        <th scope="col"><h3>Marked</h3></th>
     </tr>
     </thead>
     <tbody>
     {% for link in link_list %}
         <tr>
             <th scope="row">{{ forloop.counter }}</th>
-            <td><a href="{{ link.url }}" target="_blank">{{ link.title }}</a></td>
+            <td>
+                {{ link.title }}
+                <a href="{{ link.url }}" target="_blank">
+                    <img src="{% static 'store/open_in_new.svg' %}" alt="open-in-new-tab"/>
+                </a>
+            </td>
             <td>{{ link.topic }}</td>
-            <td>{{ link.save_date }}</td>
+            <td>{{ link.save_date|date:"d-M-y" }}</td>
             <td>{{ link.type }}</td>
             <td>
                 <input type="checkbox" id="has_been_read" {{ link.has_been_read }} />
