@@ -6,3 +6,4 @@ store/migrations/__pycache__/
 store/data/*.json
 store/data/*.txt
 users/__pycache__/
+notes.MD
