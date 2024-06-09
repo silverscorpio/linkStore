@@ -1,5 +1,20 @@
 {% extends 'store/base_list.html' %}
 {% load static %}
-{% block pages_content %}
-    <h2>Tags</h2>
+{% block content_list %}
+    <thead class="h6">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Date Created</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for tag in tag_list %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ tag.name }}</td>
+            <td>{{ tag.creation_date }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
 {% endblock %}
