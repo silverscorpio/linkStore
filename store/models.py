@@ -47,6 +47,9 @@ class Link(models.Model):
     note = models.TextField(blank=True, null=True)
     has_been_read = models.BooleanField(default=False, blank=True)
     is_starred = models.BooleanField(default=False, blank=True)
+    read_count = models.PositiveSmallIntegerField(
+        default=0,
+    )
 
     def pre_process_link_type(self) -> None:
         if "youtube" in self.url:
