@@ -5,7 +5,8 @@ from .models import Link, Topic, Tag
 
 def landing(request):
     if request.user.is_authenticated:
-        return render(request, "store/link_list.html")
+        links = Link.objects.all()
+        return render(request, "store/link_list.html", context={"link_list": links})
     return render(request, "store/landing.html")
 
 
