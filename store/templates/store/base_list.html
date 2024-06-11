@@ -24,7 +24,7 @@
                     <ul class="navbar-nav me-auto">
                         <li><a class="nav-link" href="#">Profile</a></li>
                         <li>
-                            <form method="post" action="{% url 'users:logout' %}">
+                            <form method="post" action="{% url 'logout' %}">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-link">Logout</button>
                             </form>
@@ -35,10 +35,10 @@
         </div>
     </nav>
     <div class="container-fluid">
-    <table class="table table-hover table-borderless">
-    {% block content_list %}
-    {% endblock %}
-    </table>
+        <table class="table table-hover table-borderless">
+            {% block content_list %}
+            {% endblock %}
+        </table>
     </div>
 {% endblock %}
 
