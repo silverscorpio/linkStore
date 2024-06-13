@@ -25,4 +25,3 @@ class TagListView(generic.ListView):
 
 class LinkDetailView(generic.DetailView):
     model = Link
-    template_name = "store/link_detail.html"

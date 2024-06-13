@@ -8,5 +8,5 @@ urlpatterns = [
     path("links/", views.LinkListView.as_view(), name="links"),
     path("topics/", views.TopicListView.as_view(), name="topics"),
     path("tags/", views.TagListView.as_view(), name="tags"),
-    path("links/<int:pk>", views.LinkDetailView.as_view(), name="link-detail"),
+    path("links/<int:pk>/link/", views.LinkDetailView.as_view(), name="link-detail"),
 ]
