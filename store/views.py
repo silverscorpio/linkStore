@@ -23,6 +23,6 @@ class TagListView(generic.ListView):
     model = Tag
 
 
-class TopicDetailView(generic.DetailView):
+class LinkDetailView(generic.DetailView):
     model = Link
-    # template_name = 'store/link_detail.html'
+    template_name = "store/link_detail.html"
