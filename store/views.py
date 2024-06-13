@@ -11,7 +11,8 @@ def landing(request):
 
 
 class LinkListView(generic.ListView):
-    model = Link
+    def get_queryset(self):
+        return Link.objects.order_by("save_date")
 
 
 class TopicListView(generic.ListView):
@@ -20,3 +21,8 @@ class TopicListView(generic.ListView):
 
 class TagListView(generic.ListView):
     model = Tag
+
+
+class TopicDetailView(generic.DetailView):
+    model = Link
+    # template_name = 'store/link_detail.html'

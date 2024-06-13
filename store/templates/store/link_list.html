@@ -19,8 +19,12 @@
             <td>
                 {{ link.title }}
                 <a href="{{ link.url }}" target="_blank">
-                    <img src="{% static 'store/open_in_new.svg' %}" alt="open-in-new-tab"/>
+                    <img src="{% static 'store/open_in_new_window.svg' %}" alt="open-in-new-tab"/>
                 </a>
+                <a href="/admin/store/link/{{ link.id }}/change/" target="_blank">
+                    <img src="{% static 'store/edit_note.svg' %}" alt="edit-link"/>
+                </a>
+
             </td>
             <td>{{ link.topic }}</td>
             <td>{{ link.save_date|date:"d-M-y" }}</td>
