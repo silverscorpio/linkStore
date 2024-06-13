@@ -21,7 +21,7 @@ class Topic(models.Model):
         return self.name.title()
 
     def save(self, *args, **kwargs):
-        self.name = self.name.strip()
+        self.name = self.name.strip().lower()
         super().save(*args, **kwargs)
 
     class Meta:
