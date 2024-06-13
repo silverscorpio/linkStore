@@ -25,3 +25,11 @@ class TagListView(generic.ListView):
 
 class LinkDetailView(generic.DetailView):
     model = Link
+
+
+class TopicDetailView(generic.DetailView):
+    model = Topic
+
+
+class TagDetailView(generic.DetailView):
+    model = Tag
