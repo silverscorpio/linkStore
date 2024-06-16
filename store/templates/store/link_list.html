@@ -1,6 +1,8 @@
 {% extends 'store/base_list.html' %}
 {% load static %}
 {% block content_list %}
+    {% csrf_token %}
+    <script src="{% static 'store/js/checkbox.js' %}"></script>
     <thead class="h6">
     <tr>
         <th scope="col"><h4>#</h4></th>
@@ -8,7 +10,7 @@
         <th scope="col"><h4>Topic</h4></th>
         <th scope="col"><h4>Created</h4></th>
         <th scope="col"><h4>Type</h4></th>
-        <th scope="col"><h4>Status</h4></th>
+        <th scope="col"><h4>Read</h4></th>
         <th scope="col"><h4>Marked</h4></th>
     </tr>
     </thead>
@@ -29,12 +31,24 @@
             <td>{{ link.save_date|date:"d-M-y" }}</td>
             <td>{{ link.type }}</td>
             <td>
-                <input type="checkbox" id="has_been_read" {{ link.has_been_read }} />
-                <label for="has_been_read">read</label>
+                <input type="checkbox"
+                       id="has_been_read_{{ link.pk }}"
+                       name="read_{{ link.pk }}"
+                       value="{{ link.pk }}"
+                       {% if link.has_been_read %} checked="checked" {% endif %}
+                       onchange="updateCheckboxBackend('read_{{ link.pk }}')"
+                />
+                <label for="has_been_read_{{ link.pk }}"></label>
             </td>
             <td>
-                <input type="checkbox" id="is_starred" {{ link.is_starred }} />
-                <label for="is_starred">marked</label>
+                <input type="checkbox"
+                       id="is_marked_{{ link.pk }}"
+                       name="marked_{{ link.pk }}"
+                       value="{{ link.pk }}"
+                       {% if link.is_starred %} checked="checked" {% endif %}
+                       onchange="updateCheckboxBackend('marked_{{ link.pk }}')"
+                />
+                <label for="is_marked_{{ link.pk }}"></label>
             </td>
         </tr>
     {% endfor %}
