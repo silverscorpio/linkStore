@@ -11,5 +11,4 @@ urlpatterns = [
     path("links/<int:pk>/", views.LinkDetailView.as_view(), name="link-detail"),
     path("topics/<int:pk>/", views.TopicDetailView.as_view(), name="topic-detail"),
     path("topics/<int:pk>/", views.TagDetailView.as_view(), name="tag-detail"),
-    path("links/<int:pk>/", views.LinkDetailView.as_view(), name="link-read-marked"),
 ]
