@@ -1,0 +1,26 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+
+    <img src="{% static 'store/img/landing_bg.jpg' %}" class="img-fluid" alt="landing-page-bg">
+    <div class="container-fluid
+position-absolute top-50 start-50 translate-middle"
+    >
+        <div class="position-absolute top-50 start-50 translate-middle
+        p-3 mb-2 bg-light text-dark
+        shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+
+            {% if form.errors %}
+                <p class="text-danger">Incorrect credentials</p>
+            {% endif %}
+            <form method="post" action="{% url 'users:register' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="p-2 g-col-6">
+                    <button name="submit" class="btn btn-primary btn-sm">Register</button>
+                    <input type="hidden" name="next" value="{% url 'store:links' %}"/>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
