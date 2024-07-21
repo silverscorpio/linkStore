@@ -12,7 +12,10 @@
     {% for topic in topic_list %}
         <tr>
             <th scope="row">{{ forloop.counter }}</th>
-            <td>{{ topic.name }}</td>
+            <td>{{ topic.name }} 
+                <a href="{{ topic.id }}/" target="_blank">
+                    <img src="{% static 'store/img/edit_note.svg' %}" alt="edit-link"/>
+                </a></td>
             <td>{{ topic.creation_date|date:"d-M-y" }}</td>
         </tr>
     {% endfor %}
