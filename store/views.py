@@ -19,11 +19,13 @@ class LinkListView(generic.ListView):
 
 
 class TopicListView(generic.ListView):
-    model = Topic
+    def get_queryset(self):
+        return Topic.objects.filter(owner=self.request.user).order_by("creation_date")
 
 
 class TagListView(generic.ListView):
-    model = Tag
+    def get_queryset(self):
+        return Tag.objects.filter(owner=self.request.user).order_by("creation_date")
 
 
 class LinkDetailView(generic.DetailView):
