@@ -31,10 +31,6 @@ class TagListView(generic.ListView):
 class LinkDetailView(generic.DetailView):
     model = Link
 
-    def get(self, request, *args, **kwargs):
-        link = self.get_object()
-        return render(request, "store/link_detail.html", context={"link": link})
-
     def post(self, request, *args, **kwargs):
         field, field_value = (
             request.POST.get("field"),
