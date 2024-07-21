@@ -6,15 +6,16 @@ from .models import Link, Topic, Tag
 
 
 def landing(request):
+    # TODO could use directly the links page (LinkListView) but maybe a different landing page?
     if request.user.is_authenticated:
-        links = Link.objects.all()
+        links = Link.objects.filter(topic__owner=request.user).order_by("save_date")
         return render(request, "store/link_list.html", context={"link_list": links})
     return render(request, "store/landing.html")
 
 
 class LinkListView(generic.ListView):
     def get_queryset(self):
-        return Link.objects.order_by("save_date")
+        return Link.objects.filter(topic__owner=self.request.user).order_by("save_date")
 
 
 class TopicListView(generic.ListView):
