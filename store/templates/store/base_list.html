@@ -22,7 +22,7 @@
                 </ul>
                 <div>
                     <ul class="navbar-nav me-auto">
-                        <li><a class="nav-link" href="#">Profile</a></li>
+                        <li><a class="nav-link" href="#">Profile | {{ user }}</a></li>
                         <li>
                             <form method="post" action="{% url 'users:logout' %}">
                                 {% csrf_token %}
