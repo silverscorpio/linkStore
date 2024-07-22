@@ -77,10 +77,25 @@ class TagUpdateView(generic.edit.UpdateView):
     success_url = "/store/tags/"
 
 
-class LinkCreateView(generic.edit.CreateView): ...
+class LinkCreateView(generic.edit.CreateView):
+    # TODO abstract base detail and base list (DRY)
+    model = Link
+    form_class = LinkForm
+    template_name = "store/link_detail.html"
+    success_url = "/store/links/"
 
 
-class TopicCreateView(generic.edit.CreateView): ...
+class TopicCreateView(generic.edit.CreateView):
+    # TODO abstract base detail and base list (DRY)
+    model = Topic
+    form_class = TopicForm
+    template_name = "store/topic_detail.html"
+    success_url = "/store/topics/"
 
 
-class TagCreateView(generic.edit.CreateView): ...
+class TagCreateView(generic.edit.CreateView):
+    # TODO abstract base detail and base list (DRY)
+    model = Tag
+    form_class = TagForm
+    template_name = "store/tag_detail.html"
+    success_url = "/store/tags/"
