@@ -1,65 +1,7 @@
-{% extends 'store/base.html' %}
+{% extends 'store/base_views.html' %}
 {% load static %}
 
-{% block content %}
-    {% url 'store:links' as links %}
-    {% url 'store:topics' as topics %}
-    {% url 'store:tags' as tags %}
-    {% url 'store:link-add' as add_link %}
-    {% url 'store:topic-add' as add_topic %}
-    {% url 'store:tag-add' as add_tag %}
-    
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarColor01">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == links %}active{% endif %}"
-                           href="{{ links }}">Links
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == topics %}active{% endif %}"
-                           href="{{ topics }}">Topics</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == tags %}active{% endif %}"
-                           href="{{ tags }}">Tags</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if  request.path == add_link %}active{% endif %}"
-                           href="{{ add_link }}">
-                            <img src="{% static 'store/img/add_new.svg' %}"
-                                 alt="add-link"/>
-                            New Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == add_topic %}active{% endif %}"
-                           href="{{ add_topic }}">
-                            <img src="{% static 'store/img/add_new.svg' %}" alt="add-topic"/>
-                            New Topic</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == add_tag %}active{% endif %}"
-                           href="{{ add_tag }}">
-                            <img src="{% static 'store/img/add_new.svg' %}" alt="add-tag"/>
-                            New Tag</a>
-                    </li>
-                </ul>
-                <div>
-                    <ul class="navbar-nav me-auto">
-                        <li><a class="nav-link" href="#">Profile | {{ user }}</a></li>
-                        <li>
-                            <form method="post" action="{% url 'users:logout' %}">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-link">Logout</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
+{% block view_content %}
     <div class="container-fluid">
         <table class="table table-hover table-borderless">
             {% block content_list %}
