@@ -56,6 +56,7 @@ class TopicUpdateView(generic.edit.UpdateView):
     # context object name refers to the model data inside the context object
     # the form object inside the context object is called 'form'
     context_object_name = "topic_detail"
+    success_url = "/store/topics/"
 
 
 class TagDetailView(generic.DetailView):
