@@ -6,20 +6,22 @@ from django.shortcuts import reverse
 
 class Tag(models.Model):
     name = models.CharField(max_length=20)
-    creation_date = models.DateField(auto_now_add=True)
+    created_on = models.DateField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    updated_on = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.name.lower()
 
     class Meta:
-        ordering = ["-creation_date"]
+        ordering = ["-updated_on"]
 
 
 class Topic(models.Model):
     name = models.CharField(max_length=50)
-    creation_date = models.DateField(auto_now_add=True)
+    created_on = models.DateField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    updated_on = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.name.title()
@@ -32,7 +34,7 @@ class Topic(models.Model):
         return reverse("store:topic-update", kwargs={"pk": self.id})
 
     class Meta:
-        ordering = ["-creation_date"]
+        ordering = ["-updated_on"]
 
 
 class Link(models.Model):
@@ -48,7 +50,7 @@ class Link(models.Model):
     )
     title = models.CharField(max_length=200)
     url = models.URLField(max_length=600)
-    save_date = models.DateField(auto_now_add=True)
+    saved_on = models.DateField(auto_now_add=True)
     type = models.CharField(max_length=10, choices=LinkType, default=LinkType.ARTICLE)
     tag = models.ManyToManyField(Tag, related_name="tagged_links", blank=True)
     note = models.TextField(blank=True, null=True)
@@ -57,6 +59,7 @@ class Link(models.Model):
     read_count = models.PositiveSmallIntegerField(
         default=0,
     )
+    updated_on = models.DateField(auto_now=True)
 
     def pre_process_link_type(self) -> None:
         if "youtube" in self.url:
@@ -93,4 +96,4 @@ class Link(models.Model):
         return f"{self.title[:50]} ..."
 
     class Meta:
-        ordering = ["-save_date", "has_been_read"]
+        ordering = ["-saved_on", "has_been_read"]

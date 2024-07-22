@@ -5,6 +5,7 @@
     <tr>
         <th scope="col"><h4>#</h4></th>
         <th scope="col"><h4>Tag</h4></th>
+        <th scope="col"><h4>Updated</h4></th>
         <th scope="col"><h4>Created</h4></th>
     </tr>
     </thead>
@@ -16,7 +17,8 @@
                             <a href="{{ tag.id }}/" target="_blank">
                     <img src="{% static 'store/img/edit_icon.svg' %}" alt="edit-link"/>
                 </a></td>
-            <td>{{ tag.creation_date|date:"d-M-y" }}</td>
+            <td>{{ tag.updated_on|date:"d-M-y" }}</td>
+            <td>{{ tag.created_on|date:"d-M-y" }}</td>
         </tr>
     {% endfor %}
     </tbody>
