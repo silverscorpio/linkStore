@@ -21,20 +21,20 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if 'tags' in request.path %}active{% endif %}"
-                           href="{% url 'store:tags' %}">
+                           href="{% url 'store:link-add' %}">
                             <img src="{% static 'store/img/add_new.svg' %}"
                                  alt="add-link"/>
                             New Link</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if 'tags' in request.path %}active{% endif %}"
-                           href="{% url 'store:tags' %}">
+                           href="{% url 'store:topic-add' %}">
                             <img src="{% static 'store/img/add_new.svg' %}" alt="add-topic"/>
                             New Topic</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if 'tags' in request.path %}active{% endif %}"
-                           href="{% url 'store:tags' %}">
+                           href="{% url 'store:tag-add' %}">
                             <img src="{% static 'store/img/add_new.svg' %}" alt="add-tag"/>
                             New Tag</a>
                     </li>
