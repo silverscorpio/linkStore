@@ -3,14 +3,15 @@ from .models import Link, Topic, Tag
 
 
 class LinkForm(ModelForm):
+    # TODO customise the widgets
     class Meta:
         model = Link
         fields = [
-            "topic",
-            "tag",
             "title",
             "url",
             "type",
+            "topic",
+            "tag",
             "note",
         ]
 
