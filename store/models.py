@@ -44,7 +44,7 @@ class Link(models.Model):
     topic = models.ForeignKey(
         Topic, on_delete=models.PROTECT, related_name="topic_links"
     )
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=600)
     url = models.URLField(max_length=600)
     saved_on = models.DateField(auto_now_add=True)
     type = models.CharField(max_length=10, choices=LinkType, default=LinkType.ARTICLE)
