@@ -6,9 +6,6 @@ from .models import Link, Topic, Tag
 from .forms import TopicForm, TagForm, LinkForm
 
 
-# TODO active tab in base detail and base list logic
-
-
 def landing(request):
     # TODO could use directly the links page (LinkListView) but maybe a different landing page?
     if request.user.is_authenticated:
