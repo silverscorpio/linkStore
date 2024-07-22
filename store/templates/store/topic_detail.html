@@ -2,5 +2,17 @@
 {% load static %}
 
 {% block content_detail %}
-    {{ topic }}
+    <div class="container-fluid">
+        <h3 class="p-4 m-3"> Edit Topic </h3>
+        <form method="post" action="{% url 'store:topic-update' topic_detail.id %}">
+            {% csrf_token %}
+            <div class="p-4 m-3">
+            {{ form.as_table }}
+                </div>
+            <div class="p-4 m-3">
+                <button name="submit" class="btn btn-primary btn-sm">Update</button>
+                <input type="hidden" name="next" value="{% url 'store:topic-update' topic_detail.id %}"/>
+            </div>
+        </form>
+    </div>
 {% endblock %}
