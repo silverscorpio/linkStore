@@ -6,13 +6,15 @@
         <h3 class="p-3 m-3"> Edit Tag </h3>
         <form method="post" class="m-4">
             {% csrf_token %}
-            {% for field in form %}
-                <div class="fieldWrapper p-2">
-                    {{ field.errors }}
-                    <h5>{{ field.label_tag }}</h5>
-                    {{ field }}
-                </div>
-            {% endfor %}
+            <div class="p-4 m-3">
+                {% for field in form %}
+                    <div class="fieldWrapper p-2">
+                        {{ field.errors }}
+                        <h5>{{ field.label_tag }}</h5>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+            </div>
             <div class="m-3">
                 <button name="submit" class="btn btn-primary btn-sm">Update</button>
             </div>
