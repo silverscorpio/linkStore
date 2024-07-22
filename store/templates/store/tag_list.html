@@ -13,12 +13,12 @@
     {% for tag in tag_list %}
         <tr>
             <th scope="row">{{ forloop.counter }}</th>
-            <td>{{ tag.name }}
+            <td>{{ tag.name | lower }}
                             <a href="{{ tag.id }}/" target="_blank">
                     <img src="{% static 'store/img/edit_icon.svg' %}" alt="edit-link"/>
                 </a></td>
-            <td>{{ tag.updated_on|date:"d-M-y" }}</td>
-            <td>{{ tag.created_on|date:"d-M-y" }}</td>
+            <td>{{ tag.updated_on|date:"d-m-y" }}</td>
+            <td>{{ tag.created_on|date:"d-m-y" }}</td>
         </tr>
     {% endfor %}
     </tbody>

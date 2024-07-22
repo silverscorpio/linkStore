@@ -8,6 +8,7 @@
         <th scope="col"><h4>#</h4></th>
         <th scope="col"><h4>Link</h4></th>
         <th scope="col"><h4>Topic</h4></th>
+        <th scope="col"><h4>Updated</h4></th>
         <th scope="col"><h4>Saved</h4></th>
         <th scope="col"><h4>Type</h4></th>
         <th scope="col"><h4>Read</h4></th>
@@ -20,15 +21,16 @@
             <th scope="row">{{ forloop.counter }}</th>
             <td>
                 <a href="{{ link.url }}" target="_blank">
-                    {{ link.title }}
+                    {{ link.title | lower }}
                 </a>
                 <a href="{{ link.id }}/" target="_blank">
                     <img src="{% static 'store/img/edit_icon.svg' %}" alt="edit-link"/>
                 </a>
 
             </td>
-            <td>{{ link.topic }}</td>
-            <td>{{ link.saved_on|date:"d-M-y" }}</td>
+            <td>{{ link.topic | lower }}</td>
+            <td>{{ link.updated_on|date:"d-m-y" }}</td>
+            <td>{{ link.saved_on|date:"d-m-y" }}</td>
             <td>{{ link.type }}</td>
             <td>
                 <input type="checkbox"
