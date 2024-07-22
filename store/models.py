@@ -1,7 +1,6 @@
 from django.db import models
 from store.utils import get_link_title
 from django.contrib.auth.models import User
-from django.shortcuts import reverse
 
 
 class Tag(models.Model):
@@ -29,9 +28,6 @@ class Topic(models.Model):
     def save(self, *args, **kwargs):
         self.name = self.name.strip().lower()
         super().save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        return reverse("store:topic-update", kwargs={"pk": self.id})
 
     class Meta:
         ordering = ["-updated_on"]
