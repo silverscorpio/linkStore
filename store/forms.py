@@ -10,7 +10,7 @@ from .models import Link, Topic, Tag
 
 
 class LinkForm(ModelForm):
-    # TODO customise the widgets
+    # TODO DRY - abstract the widget customisation
     class Meta:
         model = Link
         fields = [
