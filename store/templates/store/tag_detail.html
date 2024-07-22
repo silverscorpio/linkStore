@@ -2,5 +2,16 @@
 {% load static %}
 
 {% block content_detail %}
-    {{ tag }}
+    <div class="container-fluid">
+        <h3 class="p-4 m-3"> Edit Tag </h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="p-4 m-3">
+            {{ form.as_table }}
+                </div>
+            <div class="p-4 m-3">
+                <button name="submit" class="btn btn-primary btn-sm">Update</button>
+            </div>
+        </form>
+    </div>
 {% endblock %}

@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from .models import Link, Topic, Tag
-from .forms import TopicForm
+from .forms import TopicForm, TagForm
 
 
 def landing(request):
@@ -59,5 +59,10 @@ class TopicUpdateView(generic.edit.UpdateView):
     success_url = "/store/topics/"
 
 
-class TagDetailView(generic.DetailView):
+class TagUpdateView(generic.edit.UpdateView):
+    # TODO as from TopicUpdateView
     model = Tag
+    form_class = TagForm
+    template_name = "store/tag_detail.html"
+    context_object_name = "tag_detail"
+    success_url = "/store/tags/"
