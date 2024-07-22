@@ -3,13 +3,17 @@
 
 {% block content_detail %}
     <div class="container-fluid">
-        <h3 class="p-4 m-3"> Edit Tag </h3>
-        <form method="post">
+        <h3 class="p-3 m-3"> Edit Tag </h3>
+        <form method="post" class="m-4">
             {% csrf_token %}
-            <div class="p-4 m-3">
-            {{ form.as_table }}
+            {% for field in form %}
+                <div class="fieldWrapper p-2">
+                    {{ field.errors }}
+                    <h5>{{ field.label_tag }}</h5>
+                    {{ field }}
                 </div>
-            <div class="p-4 m-3">
+            {% endfor %}
+            <div class="m-3">
                 <button name="submit" class="btn btn-primary btn-sm">Update</button>
             </div>
         </form>

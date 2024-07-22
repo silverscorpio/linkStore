@@ -61,6 +61,13 @@ class TopicForm(ModelForm):
         fields = [
             "name",
         ]
+        widgets = {
+            "name": TextInput(
+                attrs={
+                    "class": "form-control w-50 m-2",
+                }
+            ),
+        }
 
 
 class TagForm(ModelForm):
@@ -69,3 +76,10 @@ class TagForm(ModelForm):
         fields = [
             "name",
         ]
+        widgets = {
+            "name": TextInput(
+                attrs={
+                    "class": "form-control w-50 m-2",
+                }
+            ),
+        }
