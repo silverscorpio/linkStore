@@ -6,6 +6,9 @@ from .models import Link, Topic, Tag
 from .forms import TopicForm, TagForm, LinkForm
 
 
+# TODO use a single base template for the update and create views (avoid repeating, as both use same template)
+
+
 def landing(request):
     # TODO could use directly the links page (LinkListView) but maybe a different landing page?
     if request.user.is_authenticated:
@@ -48,7 +51,6 @@ class LinkDetailView(generic.DetailView):
 
 
 class LinkUpdateView(generic.edit.UpdateView):
-    # TODO as from TopicUpdateView
     model = Link
     form_class = LinkForm
     template_name = "store/link_detail.html"
@@ -60,7 +62,6 @@ class TopicUpdateView(generic.edit.UpdateView):
     model = Topic
     form_class = TopicForm
 
-    # TODO maybe abstract the nav bar part into base and remove separate base detail and base list
     template_name = "store/topic_detail.html"
     # context object name refers to the model data inside the context object
     # the form object inside the context object is called 'form'
@@ -69,7 +70,6 @@ class TopicUpdateView(generic.edit.UpdateView):
 
 
 class TagUpdateView(generic.edit.UpdateView):
-    # TODO as from TopicUpdateView
     model = Tag
     form_class = TagForm
     template_name = "store/tag_detail.html"
@@ -78,7 +78,6 @@ class TagUpdateView(generic.edit.UpdateView):
 
 
 class LinkCreateView(generic.edit.CreateView):
-    # TODO abstract base detail and base list (DRY)
     model = Link
     form_class = LinkForm
     template_name = "store/link_detail.html"
@@ -86,7 +85,6 @@ class LinkCreateView(generic.edit.CreateView):
 
 
 class TopicCreateView(generic.edit.CreateView):
-    # TODO abstract base detail and base list (DRY)
     model = Topic
     form_class = TopicForm
     template_name = "store/topic_detail.html"
@@ -94,7 +92,6 @@ class TopicCreateView(generic.edit.CreateView):
 
 
 class TagCreateView(generic.edit.CreateView):
-    # TODO abstract base detail and base list (DRY)
     model = Tag
     form_class = TagForm
     template_name = "store/tag_detail.html"
