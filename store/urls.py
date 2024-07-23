@@ -17,4 +17,10 @@ urlpatterns = [
     path("links/add/", views.LinkCreateView.as_view(), name="link-add"),
     path("topics/add/", views.TopicCreateView.as_view(), name="topic-add"),
     path("tags/add/", views.TagCreateView.as_view(), name="tag-add"),
+    # delete
+    path("links/<int:pk>/delete/", views.LinkDeleteView.as_view(), name="link-delete"),
+    path(
+        "topics/<int:pk>/delete/", views.TopicDeleteView.as_view(), name="topic-delete"
+    ),
+    path("tags/<int:pk>/delete/", views.TagDeleteView.as_view(), name="tag-delete"),
 ]
