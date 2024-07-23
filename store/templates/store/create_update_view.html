@@ -3,7 +3,13 @@
 
 {% block view_content %}
     <div class="container-fluid">
-        <h3 class="p-3 m-3"> Edit Link </h3>
+        <h3 class="p-3 m-3">
+            {% if 'add' in request.path %}
+                Add {{ model_name }}
+            {% else %}
+                Edit {{ model_name }}
+            {% endif %}
+        </h3>
         <form method="post" class="m-4">
             {% csrf_token %}
             {% for field in form %}
@@ -14,7 +20,13 @@
                 </div>
             {% endfor %}
             <div class="m-3">
-                <button name="submit" class="btn btn-primary btn-sm">Update</button>
+                <button name="submit" class="btn btn-primary btn-sm">
+                    {% if 'add' in request.path %}
+                        Add
+                    {% else %}
+                        Update
+                    {% endif %}
+                </button>
             </div>
         </form>
     </div>
