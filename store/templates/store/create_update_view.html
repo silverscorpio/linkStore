@@ -10,32 +10,47 @@
                 Edit {{ model_name }}
             {% endif %}
         </h3>
-        <form method="post" class="m-4">
-            {% csrf_token %}
-            {% for field in form %}
-                <div class="fieldWrapper p-2">
-                    {{ field.errors }}
-                    <h5>{{ field.label_tag }}</h5>
-                    {% if field.label == 'Url' and field.value %}
-                        <div class="d-flex flex-row">
-                            {{ field }}
-                            <a href="{{ field.value }}/" target="_blank">
-                                <img class="m-3" src="{% static 'store/img/open_in_new.svg' %}" alt="open-url"/></a>
+
+        <div class="d-flex p-3 m-3">
+            <div class="flex-fill">
+                <form method="post" class="m-4">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="fieldWrapper p-2">
+                            {{ field.errors }}
+                            <h5>{{ field.label_tag }}</h5>
+                            {% if field.label == 'Url' and field.value %}
+                                <div class="d-flex flex-row">
+                                    {{ field }}
+                                    <a href="{{ field.value }}/" target="_blank">
+                                        <img class="m-3" src="{% static 'store/img/open_in_new.svg' %}" alt="open-url"/></a>
+                                </div>
+                            {% else %}
+                                {{ field }}
+                            {% endif %}
                         </div>
-                    {% else %}
-                        {{ field }}
-                    {% endif %}
-                </div>
-            {% endfor %}
-            <div class="m-3">
-                <button name="submit" class="btn btn-primary btn-sm">
-                    {% if 'add' in request.path %}
-                        Add
-                    {% else %}
-                        Update
-                    {% endif %}
-                </button>
+                    {% endfor %}
+                    <div class="m-3">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            {% if 'add' in request.path %}
+                                Add
+                            {% else %}
+                                Update
+                            {% endif %}
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
+
+            {% if 'add' not in request.path %}
+                <div class="d-flex align-items-start">
+                    <a href="{% url 'store:link-delete' pk=detail_object.pk %}">
+                        <button type="submit" class="btn btn-primary btn-sm btn-danger">
+                            Delete
+                        </button>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
