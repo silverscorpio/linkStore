@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView
@@ -8,10 +8,8 @@ from .forms import TopicForm, TagForm, LinkForm
 
 
 def landing(request):
-    # TODO could use directly the links page (LinkListView) but maybe a different landing page?
     if request.user.is_authenticated:
-        links = Link.objects.filter(topic__owner=request.user).order_by("-saved_on")
-        return render(request, "store/link_list.html", context={"link_list": links})
+        return redirect("store:links")
     return render(request, "store/landing.html")
 
 
