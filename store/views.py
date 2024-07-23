@@ -1,14 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from .models import Link, Topic, Tag
 from .forms import TopicForm, TagForm, LinkForm
-
-
-# TODO use a single base template for the update and create views (avoid repeating, as both use same template)
-# TODO use reverse for success url
 
 
 def landing(request):
@@ -52,16 +48,16 @@ class LinkDetailView(DetailView):
         return HttpResponseRedirect(reverse("store:links"))
 
 
-class LinkUpdateView(UpdateView):
+class BaseLinkView:
     model = Link
     form_class = LinkForm
     context_object_name = "detail_object"
     extra_context = {"model_name": model.__name__}
     template_name = "store/create_update_view.html"
-    success_url = "/store/links/"
+    success_url = reverse_lazy("store:links")
 
 
-class TopicUpdateView(UpdateView):
+class BaseTopicView:
     """
     context object name - the model data inside the context object
     form object inside the context object is called 'form'
@@ -72,40 +68,37 @@ class TopicUpdateView(UpdateView):
     context_object_name = "detail_object"
     extra_context = {"model_name": model.__name__}
     template_name = "store/create_update_view.html"
-    success_url = "/store/topics/"
+    success_url = reverse_lazy("store:topics")
 
 
-class TagUpdateView(UpdateView):
+class BaseTagView:
     model = Tag
     form_class = TagForm
     context_object_name = "detail_object"
     extra_context = {"model_name": model.__name__}
     template_name = "store/create_update_view.html"
-    success_url = "/store/tags/"
+    success_url = reverse_lazy("store:tags")
 
 
-class LinkCreateView(CreateView):
-    model = Link
-    form_class = LinkForm
-    context_object_name = "detail_object"
-    extra_context = {"model_name": model.__name__}
-    template_name = "store/create_update_view.html"
-    success_url = "/store/links/"
+class LinkCreateView(BaseLinkView, CreateView):
+    pass
 
 
-class TopicCreateView(CreateView):
-    model = Topic
-    form_class = TopicForm
-    context_object_name = "detail_object"
-    extra_context = {"model_name": model.__name__}
-    template_name = "store/create_update_view.html"
-    success_url = "/store/topics/"
+class LinkUpdateView(BaseLinkView, UpdateView):
+    pass
 
 
-class TagCreateView(CreateView):
-    model = Tag
-    form_class = TagForm
-    context_object_name = "detail_object"
-    extra_context = {"model_name": model.__name__}
-    template_name = "store/create_update_view.html"
-    success_url = "/store/tags/"
+class TopicCreateView(BaseTopicView, CreateView):
+    pass
+
+
+class TopicUpdateView(BaseTopicView, UpdateView):
+    pass
+
+
+class TagCreateView(BaseTagView, CreateView):
+    pass
+
+
+class TagUpdateView(BaseTagView, UpdateView):
+    pass
