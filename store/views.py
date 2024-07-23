@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.views import generic
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView
 from .models import Link, Topic, Tag
 from .forms import TopicForm, TagForm, LinkForm
 
 
 # TODO use a single base template for the update and create views (avoid repeating, as both use same template)
+# TODO use reverse for success url
 
 
 def landing(request):
@@ -17,22 +19,22 @@ def landing(request):
     return render(request, "store/landing.html")
 
 
-class LinkListView(generic.ListView):
+class LinkListView(ListView):
     def get_queryset(self):
         return Link.objects.filter(topic__owner=self.request.user).order_by("-saved_on")
 
 
-class TopicListView(generic.ListView):
+class TopicListView(ListView):
     def get_queryset(self):
         return Topic.objects.filter(owner=self.request.user).order_by("-updated_on")
 
 
-class TagListView(generic.ListView):
+class TagListView(ListView):
     def get_queryset(self):
         return Tag.objects.filter(owner=self.request.user).order_by("-updated_on")
 
 
-class LinkDetailView(generic.DetailView):
+class LinkDetailView(DetailView):
     model = Link
 
     def post(self, request, *args, **kwargs):
@@ -50,49 +52,60 @@ class LinkDetailView(generic.DetailView):
         return HttpResponseRedirect(reverse("store:links"))
 
 
-class LinkUpdateView(generic.edit.UpdateView):
+class LinkUpdateView(UpdateView):
     model = Link
     form_class = LinkForm
-    template_name = "store/link_detail.html"
-    context_object_name = "link_detail"
+    context_object_name = "detail_object"
+    extra_context = {"model_name": model.__name__}
+    template_name = "store/create_update_view.html"
     success_url = "/store/links/"
 
 
-class TopicUpdateView(generic.edit.UpdateView):
+class TopicUpdateView(UpdateView):
+    """
+    context object name - the model data inside the context object
+    form object inside the context object is called 'form'
+    """
+
     model = Topic
     form_class = TopicForm
-
-    template_name = "store/topic_detail.html"
-    # context object name refers to the model data inside the context object
-    # the form object inside the context object is called 'form'
-    context_object_name = "topic_detail"
+    context_object_name = "detail_object"
+    extra_context = {"model_name": model.__name__}
+    template_name = "store/create_update_view.html"
     success_url = "/store/topics/"
 
 
-class TagUpdateView(generic.edit.UpdateView):
+class TagUpdateView(UpdateView):
     model = Tag
     form_class = TagForm
-    template_name = "store/tag_detail.html"
-    context_object_name = "tag_detail"
+    context_object_name = "detail_object"
+    extra_context = {"model_name": model.__name__}
+    template_name = "store/create_update_view.html"
     success_url = "/store/tags/"
 
 
-class LinkCreateView(generic.edit.CreateView):
+class LinkCreateView(CreateView):
     model = Link
     form_class = LinkForm
-    template_name = "store/link_detail.html"
+    context_object_name = "detail_object"
+    extra_context = {"model_name": model.__name__}
+    template_name = "store/create_update_view.html"
     success_url = "/store/links/"
 
 
-class TopicCreateView(generic.edit.CreateView):
+class TopicCreateView(CreateView):
     model = Topic
     form_class = TopicForm
-    template_name = "store/topic_detail.html"
+    context_object_name = "detail_object"
+    extra_context = {"model_name": model.__name__}
+    template_name = "store/create_update_view.html"
     success_url = "/store/topics/"
 
 
-class TagCreateView(generic.edit.CreateView):
+class TagCreateView(CreateView):
     model = Tag
     form_class = TagForm
-    template_name = "store/tag_detail.html"
+    context_object_name = "detail_object"
+    extra_context = {"model_name": model.__name__}
+    template_name = "store/create_update_view.html"
     success_url = "/store/tags/"
