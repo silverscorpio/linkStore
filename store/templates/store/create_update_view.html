@@ -16,7 +16,15 @@
                 <div class="fieldWrapper p-2">
                     {{ field.errors }}
                     <h5>{{ field.label_tag }}</h5>
-                    {{ field }}
+                    {% if field.label == 'Url' and field.value %}
+                        <div class="d-flex flex-row">
+                            {{ field }}
+                            <a href="{{ field.value }}/" target="_blank">
+                                <img class="m-3" src="{% static 'store/img/open_in_new.svg' %}" alt="open-url"/></a>
+                        </div>
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
                 </div>
             {% endfor %}
             <div class="m-3">
