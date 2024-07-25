@@ -4,22 +4,26 @@
 {% block view_content %}
     <div class="container-fluid">
         <p class="p-3 m-4 text-primary"><strong>
-            Confirm deletion of <em><strong> ' {{ detail_object }} ' </strong></em> link? <br>All related items will be
-            deleted.
+            Confirm deletion of <em><strong> ' {{ detail_object }} ' </strong></em> link? <br>All related items will
+            be deleted.
         </strong>
         </p>
         <div class="d-flex p-2 m-4">
-            <a href="{% url 'store:link-delete' pk=detail_object.pk %}">
-                <button type="submit" class="btn btn-primary btn-sm btn-danger m-1">
-                    Yes, delete
-                </button>
-            </a>
-
+            <form method="post" action="{% url 'store:link-delete' pk=detail_object.pk %}">
+                {% csrf_token %}
+                {{ form }}
+                <a href="{% url 'store:link-delete' pk=detail_object.pk %}">
+                    <button type="submit" value='Confirm' class="btn btn-primary btn-sm btn-danger m-1">
+                        Yes, delete
+                    </button>
+                </a>
+            </form>
             <a href="{% url 'store:link-update' pk=detail_object.pk %}">
                 <button type="submit" class="btn btn-primary btn-sm m-1">
                     No, return back
                 </button>
             </a>
         </div>
+
     </div>
 {% endblock %}
