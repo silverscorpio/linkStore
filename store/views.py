@@ -2,11 +2,12 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Link, Topic, Tag
 from .forms import TopicForm, TagForm, LinkForm
 
 
+# TODO object and detail object (object exists already in context)
 def landing(request):
     if request.user.is_authenticated:
         return redirect("store:links")
@@ -48,7 +49,6 @@ class LinkDetailView(DetailView):
 
 class BaseLinkView:
     model = Link
-    form_class = LinkForm
     context_object_name = "detail_object"
     extra_context = {"model_name": model.__name__}
     template_name = "store/create_update_view.html"
@@ -62,7 +62,6 @@ class BaseTopicView:
     """
 
     model = Topic
-    form_class = TopicForm
     context_object_name = "detail_object"
     extra_context = {"model_name": model.__name__}
     template_name = "store/create_update_view.html"
@@ -71,32 +70,46 @@ class BaseTopicView:
 
 class BaseTagView:
     model = Tag
-    form_class = TagForm
     context_object_name = "detail_object"
     extra_context = {"model_name": model.__name__}
     template_name = "store/create_update_view.html"
     success_url = reverse_lazy("store:tags")
 
 
+# Link
 class LinkCreateView(BaseLinkView, CreateView):
-    pass
+    form_class = LinkForm
 
 
 class LinkUpdateView(BaseLinkView, UpdateView):
-    pass
+    form_class = LinkForm
 
 
+class LinkDeleteView(BaseLinkView, DeleteView):
+    template_name = "store/delete_view.html"
+
+
+# Topic
 class TopicCreateView(BaseTopicView, CreateView):
-    pass
+    form_class = TopicForm
 
 
 class TopicUpdateView(BaseTopicView, UpdateView):
-    pass
+    form_class = TopicForm
 
 
+class TopicDeleteView(BaseTopicView, DeleteView):
+    template_name = "store/delete_view.html"
+
+
+# Tag
 class TagCreateView(BaseTagView, CreateView):
-    pass
+    form_class = TagForm
 
 
 class TagUpdateView(BaseTagView, UpdateView):
-    pass
+    form_class = TagForm
+
+
+class TagDeleteView(BaseTagView, DeleteView):
+    template_name = "store/delete_view.html"
