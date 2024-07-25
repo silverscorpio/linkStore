@@ -44,10 +44,16 @@
 
             {% if 'add' not in request.path %}
                 <div class="d-flex align-items-start">
-                    <a href="{% url 'store:link-delete' pk=detail_object.pk %}">
-                        <button type="submit" class="btn btn-primary btn-sm btn-danger">
-                            Delete
-                        </button>
+                    {% if 'links' in request.path %}
+                        <a href="{% url 'store:link-delete' pk=detail_object.pk %}">
+                    {% elif 'topics' in request.path %}
+                        <a href="{% url 'store:topic-delete' pk=detail_object.pk %}">
+                    {% elif 'tags' in request.path %}
+                        <a href="{% url 'store:tag-delete' pk=detail_object.pk %}">
+                    {% endif %}
+                    <button type="submit" class="btn btn-primary btn-sm btn-danger">
+                        Delete
+                    </button>
                     </a>
                 </div>
             {% endif %}
