@@ -51,3 +51,20 @@ function updateCheckboxBackend(val) {
         })
 
 }
+
+// function readCount() {
+//     console.log("panda")
+// const url = `${pk}/`
+// const csrftoken = getCookie('csrftoken');
+// const read_count_anchor = document.getElementById("read_count_anchor")
+// console.log(read_count_anchor)
+// return true
+// let data = null
+// let post_options = {
+//     method: 'POST',
+//     headers: {'X-CSRFToken': csrftoken},
+//     body: data,
+//     mode: 'same-origin'
+// }
+// fetch(url, {})
+// }

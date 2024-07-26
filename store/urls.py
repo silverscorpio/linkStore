@@ -9,10 +9,13 @@ urlpatterns = [
     path("links/", views.LinkListView.as_view(), name="links"),
     path("topics/", views.TopicListView.as_view(), name="topics"),
     path("tags/", views.TagListView.as_view(), name="tags"),
+    path("links/<int:pk>/", views.LinkDetailView.as_view(), name="link-update"),
     # update
-    path("links/<int:pk>/", views.LinkUpdateView.as_view(), name="link-update"),
-    path("topics/<int:pk>/", views.TopicUpdateView.as_view(), name="topic-update"),
-    path("tags/<int:pk>/", views.TagUpdateView.as_view(), name="tag-update"),
+    path("links/<int:pk>/update/", views.LinkUpdateView.as_view(), name="link-update"),
+    path(
+        "topics/<int:pk>/update/", views.TopicUpdateView.as_view(), name="topic-update"
+    ),
+    path("tags/<int:pk>/update/", views.TagUpdateView.as_view(), name="tag-update"),
     # add
     path("links/add/", views.LinkCreateView.as_view(), name="link-add"),
     path("topics/add/", views.TopicCreateView.as_view(), name="topic-add"),
