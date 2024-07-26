@@ -3,18 +3,17 @@
 {% block content_list %}
     {% csrf_token %}
     <script src="{% static 'store/js/checkbox.js' %}"></script>
-    <script src="{% static 'store/js/readCountFunctionality.js' %}"></script>
     <thead class="h6">
     <tr>
-        <th scope="col"><h4>#</h4></th>
-        <th scope="col"><h4>Link</h4></th>
-        <th scope="col"><h4>Topic</h4></th>
-        <th scope="col"><h4>Updated</h4></th>
-        <th scope="col"><h4>Read Count</h4></th>
-        <th scope="col"><h4>Saved</h4></th>
-        <th scope="col"><h4>Type</h4></th>
-        <th scope="col"><h4>Read</h4></th>
-        <th scope="col"><h4>Marked</h4></th>
+        <th scope="col"><h5>#</h5></th>
+        <th scope="col"><h5>Link</h5></th>
+        <th scope="col"><h5>Topic</h5></th>
+        <th scope="col"><h5>Updated</h5></th>
+        <th scope="col"><h5>Read#</h5></th>
+        <th scope="col"><h5>Saved</h5></th>
+        <th scope="col"><h5>Type</h5></th>
+        <th scope="col"><h5>Read?</h5></th>
+        <th scope="col"><h5>Marked?</h5></th>
     </tr>
     </thead>
     <tbody>
@@ -22,7 +21,7 @@
         <tr>
             <th scope="row">{{ forloop.counter }}</th>
             <td>
-                <a href="{{ link.url }}" target="_blank" onclick="readCount({{ link.pk }})">
+                <a href="{{ link.url }}" target="_blank">
                     {{ link.title | lower }}
                 </a>
                 <a href="{{ link.id }}/" target="_blank">
