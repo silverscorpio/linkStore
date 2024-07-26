@@ -93,7 +93,7 @@ class Link(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.title[:50]} ..."
+        return f"{self.title[:30]} ..."
 
     class Meta:
         ordering = ["-saved_on", "has_been_read"]
