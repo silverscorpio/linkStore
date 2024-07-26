@@ -42,7 +42,11 @@ class Link(models.Model):
         DOCUMENT = "document"
 
     topic = models.ForeignKey(
-        Topic, on_delete=models.PROTECT, related_name="topic_links"
+        Topic,
+        on_delete=models.SET_NULL,
+        related_name="topic_links",
+        null=True,
+        blank=True,
     )
     title = models.CharField(max_length=600)
     url = models.URLField(max_length=600)
