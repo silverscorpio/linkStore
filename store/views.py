@@ -16,7 +16,9 @@ def landing(request):
 
 class LinkListView(ListView):
     def get_queryset(self):
-        return Link.objects.filter(topic__owner=self.request.user).order_by("-saved_on")
+        return Link.objects.filter(topic__owner=self.request.user).order_by(
+            "-read_count"
+        )
 
 
 class TopicListView(ListView):

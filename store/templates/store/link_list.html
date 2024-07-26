@@ -3,13 +3,14 @@
 {% block content_list %}
     {% csrf_token %}
     <script src="{% static 'store/js/checkbox.js' %}"></script>
-    <script src="{% static 'store/js/readCountLogic.js' %}"></script>
+    <script src="{% static 'store/js/readCountFunctionality.js' %}"></script>
     <thead class="h6">
     <tr>
         <th scope="col"><h4>#</h4></th>
         <th scope="col"><h4>Link</h4></th>
         <th scope="col"><h4>Topic</h4></th>
         <th scope="col"><h4>Updated</h4></th>
+        <th scope="col"><h4>Read Count</h4></th>
         <th scope="col"><h4>Saved</h4></th>
         <th scope="col"><h4>Type</h4></th>
         <th scope="col"><h4>Read</h4></th>
@@ -31,6 +32,7 @@
             </td>
             <td>{{ link.topic | lower }}</td>
             <td>{{ link.updated_on|date:"d-m-y" }}</td>
+            <td>{{ link.read_count }}</td>
             <td>{{ link.saved_on|date:"d-m-y" }}</td>
             <td>{{ link.type }}</td>
             <td>
@@ -38,7 +40,7 @@
                        id="has_been_read_{{ link.pk }}"
                        name="read_{{ link.pk }}"
                        value="{{ link.pk }}"
-                       {% if link.has_been_read %} checked="checked" {% endif %}
+                        {% if link.has_been_read %} checked="checked" {% endif %}
                        onchange="updateCheckboxBackend('read_{{ link.pk }}')"
                 />
                 <label for="has_been_read_{{ link.pk }}"></label>
@@ -48,7 +50,7 @@
                        id="is_marked_{{ link.pk }}"
                        name="marked_{{ link.pk }}"
                        value="{{ link.pk }}"
-                       {% if link.is_starred %} checked="checked" {% endif %}
+                        {% if link.is_starred %} checked="checked" {% endif %}
                        onchange="updateCheckboxBackend('marked_{{ link.pk }}')"
                 />
                 <label for="is_marked_{{ link.pk }}"></label>
