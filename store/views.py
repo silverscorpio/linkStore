@@ -8,7 +8,6 @@ from .forms import TopicForm, TagForm, LinkForm
 
 
 # TODO object and detail object (object exists already in context)
-# TODO model protect on delete
 def landing(request):
     if request.user.is_authenticated:
         return redirect("store:links")
