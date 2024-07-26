@@ -3,6 +3,7 @@
 {% block content_list %}
     {% csrf_token %}
     <script src="{% static 'store/js/checkbox.js' %}"></script>
+    <script src="{% static 'store/js/readCountLogic.js' %}"></script>
     <thead class="h6">
     <tr>
         <th scope="col"><h4>#</h4></th>
@@ -23,7 +24,7 @@
                 <a href="{{ link.url }}" target="_blank">
                     {{ link.title | lower }}
                 </a>
-                <a href="{{ link.id }}/" target="_blank">
+                <a href="{{ link.id }}/" target="_blank" onclick="readCount({{ link.pk }})">
                     <img src="{% static 'store/img/edit_icon.svg' %}" alt="edit-link"/>
                 </a>
 

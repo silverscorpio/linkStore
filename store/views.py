@@ -85,6 +85,12 @@ class LinkCreateView(BaseLinkView, CreateView):
 class LinkUpdateView(BaseLinkView, UpdateView):
     form_class = LinkForm
 
+    def get(self, request, *args, **kwargs):
+        link_instance: Link = self.get_object()
+        link_instance.read_count += 1
+        link_instance.save()
+        return super().get(request, *args, **kwargs)
+
 
 class LinkDeleteView(BaseLinkView, DeleteView):
     template_name = "store/delete_view.html"
