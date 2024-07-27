@@ -43,11 +43,11 @@ function updateCheckboxBackend(val) {
     fetch(postData[0], postData[1])
         .then(response => {
             if (response.status === 200) {
-                alert(`Updated: ${postData[1].body.get("field")} status`)
+                console.log(`Updated: ${postData[1].body.get("field")} status`)
             }
         })
         .catch(error => {
-            alert(`Failed: ${postData[1].body.get("field")} status`)
+            console.error(`Failed: ${postData[1].body.get("field")} status ${error}`)
         })
 
 }
@@ -62,16 +62,16 @@ function readCount(pk) {
         method: "POST",
         headers: {'X-CSRFToken': csrftoken},
         body: queryParams,
-        mode: 'same-origin' // Do not send CSRF token to another domain.
+        mode: 'same-origin'
     }
 
     fetch(url, data)
         .then(response => {
             if (response.status === 200) {
-                alert(`Updated: ${data.body.get("field")} read_count`)
+                console.log(`Updated: ${data.body.get("field")}`)
             }
         })
         .catch(error => {
-            alert(`Failed: ${data.body.get("field")} read_count`)
+            console.error(`Failed: ${data.body.get("field")} ${error}`)
         })
 }
