@@ -39,12 +39,16 @@ class LinkDetailView(DetailView):
             request.POST.get("field"),
             bool(int(request.POST.get("status"))),
         )
-        req_object = self.get_object()
+        instance: Link = self.get_object()
         if field == "read":
-            req_object.has_been_read = field_value
+            instance.has_been_read = field_value
         elif field == "marked":
-            req_object.is_starred = field_value
-        req_object.save()
+            instance.is_starred = field_value
+        elif field == "read_count":
+            instance: Link = self.get_object()
+            instance.read_count += 1
+
+        instance.save()
 
         return HttpResponseRedirect(reverse("store:links"))
 

@@ -52,19 +52,28 @@ function updateCheckboxBackend(val) {
 
 }
 
-// function readCount() {
-//     console.log("panda")
-// const url = `${pk}/`
-// const csrftoken = getCookie('csrftoken');
-// const read_count_anchor = document.getElementById("read_count_anchor")
-// console.log(read_count_anchor)
-// return true
-// let data = null
-// let post_options = {
-//     method: 'POST',
-//     headers: {'X-CSRFToken': csrftoken},
-//     body: data,
-//     mode: 'same-origin'
-// }
-// fetch(url, {})
-// }
+function readCount(pk) {
+    const url = `${pk}/`
+    const csrftoken = getCookie('csrftoken');
+    const check = document.getElementById("checky")
+    console.log(check)
+    let queryParams = new URLSearchParams()
+    queryParams.append("field", "read_count")
+    queryParams.append("status", `${pk}`)
+    const data = {
+        method: "POST",
+        headers: {'X-CSRFToken': csrftoken},
+        body: queryParams,
+        mode: 'same-origin' // Do not send CSRF token to another domain.
+    }
+
+    fetch(url, data)
+        .then(response => {
+            if (response.status === 200) {
+                alert(`Updated: ${data.body.get("field")} read_count`)
+            }
+        })
+        .catch(error => {
+            alert(`Failed: ${data.body.get("field")} read_count`)
+        })
+}

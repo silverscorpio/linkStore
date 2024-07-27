@@ -2,8 +2,7 @@
 {% load static %}
 {% block content_list %}
     {% csrf_token %}
-    <script src="{% static 'store/js/utilFunctions.js' %}">
-    </script>
+    <script src="{% static 'store/js/utilFunctions.js' %}"></script>
     <thead class="h6">
     <tr>
         <th scope="col"><h5>#</h5></th>
@@ -22,7 +21,7 @@
         <tr>
             <th scope="row">{{ forloop.counter }}</th>
             <td>
-                <a href="{{ link.url }}" target="_blank">
+                <a href="{{ link.url }}" target="_blank" onclick="readCount({{ link.pk }})" id="checky">
                     {{ link.title | lower }}
                 </a>
                 <a href="{% url 'store:link-update' link.pk %}" target="_blank">
