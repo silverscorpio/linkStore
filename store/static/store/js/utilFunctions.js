@@ -55,8 +55,6 @@ function updateCheckboxBackend(val) {
 function readCount(pk) {
     const url = `${pk}/`
     const csrftoken = getCookie('csrftoken');
-    const check = document.getElementById("checky")
-    console.log(check)
     let queryParams = new URLSearchParams()
     queryParams.append("field", "read_count")
     queryParams.append("status", `${pk}`)

@@ -21,7 +21,7 @@
         <tr>
             <th scope="row">{{ forloop.counter }}</th>
             <td>
-                <a href="{{ link.url }}" target="_blank" onclick="readCount({{ link.pk }})" id="checky">
+                <a href="{{ link.url }}" target="_blank" onclick="readCount({{ link.pk }})">
                     {{ link.title | lower }}
                 </a>
                 <a href="{% url 'store:link-update' link.pk %}" target="_blank">
