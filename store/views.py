@@ -34,6 +34,7 @@ class TagListView(ListView):
 class LinkDetailView(DetailView):
     model = Link
 
+    # TODO refactor this into separate func calls in JS (decouple)
     def post(self, request, *args, **kwargs):
         field, field_value = (
             request.POST.get("field"),
