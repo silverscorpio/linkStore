@@ -54,8 +54,8 @@ class Link(models.Model):
     type = models.CharField(max_length=10, choices=LinkType, default=LinkType.ARTICLE)
     tag = models.ManyToManyField(Tag, related_name="tagged_links", blank=True)
     note = models.TextField(blank=True, null=True)
-    has_been_read = models.BooleanField(default=False, blank=True)
-    is_starred = models.BooleanField(default=False, blank=True)
+    is_read = models.BooleanField(default=False, blank=True)
+    is_marked = models.BooleanField(default=False, blank=True)
     read_count = models.PositiveSmallIntegerField(
         default=0,
     )
@@ -96,4 +96,4 @@ class Link(models.Model):
         return f"{self.title[:30]} ..."
 
     class Meta:
-        ordering = ["-saved_on", "has_been_read"]
+        ordering = ["-saved_on", "is_read"]
