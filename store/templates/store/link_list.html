@@ -36,20 +36,20 @@
             <td>{{ link.type }}</td>
             <td>
                 <input type="checkbox"
-                       id="has_been_read_{{ link.pk }}"
+                       id="is_read_{{ link.pk }}"
                        name="read_{{ link.pk }}"
                        value="{{ link.pk }}"
-                        {% if link.has_been_read %} checked="checked" {% endif %}
+                        {% if link.is_read %} checked="checked" {% endif %}
                        onchange="updateCheckboxBackend('read_{{ link.pk }}')"
                 />
-                <label for="has_been_read_{{ link.pk }}"></label>
+                <label for="is_read_{{ link.pk }}"></label>
             </td>
             <td>
                 <input type="checkbox"
                        id="is_marked_{{ link.pk }}"
                        name="marked_{{ link.pk }}"
                        value="{{ link.pk }}"
-                        {% if link.is_starred %} checked="checked" {% endif %}
+                        {% if link.is_marked %} checked="checked" {% endif %}
                        onchange="updateCheckboxBackend('marked_{{ link.pk }}')"
                 />
                 <label for="is_marked_{{ link.pk }}"></label>

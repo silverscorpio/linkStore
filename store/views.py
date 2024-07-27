@@ -42,9 +42,9 @@ class LinkDetailView(DetailView):
         )
         instance: Link = self.get_object()
         if field == "read":
-            instance.has_been_read = field_value
+            instance.is_read = field_value
         elif field == "marked":
-            instance.is_starred = field_value
+            instance.is_marked = field_value
         elif field == "read_count":
             instance: Link = self.get_object()
             instance.read_count += 1
