@@ -1,5 +1,5 @@
 function getCookie(name) {
-    // django docs
+    // from django docs - gets the csrf token from the cookies
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
         const cookies = document.cookie.split(';');
@@ -16,6 +16,7 @@ function getCookie(name) {
 }
 
 function getPostData(val) {
+    // returns the data to be sent with the POST request for updating the read and marked statuses
     const vals = val.split("_")
     const field = vals[0]
     const field_pk = vals[1]
@@ -39,6 +40,7 @@ function getPostData(val) {
 }
 
 function updateCheckboxBackend(val) {
+    // ability to manually mark the read status and marked status to true and false using checkbox
     const postData = getPostData(val)
     fetch(postData[0], postData[1])
         .then(response => {
@@ -53,6 +55,7 @@ function updateCheckboxBackend(val) {
 }
 
 function readCountAndStatusUpdate(pk) {
+    // opening the url triggers an update on the read count and read status
     const url = `${pk}/`
     const csrftoken = getCookie('csrftoken');
     let queryParams = new URLSearchParams()
