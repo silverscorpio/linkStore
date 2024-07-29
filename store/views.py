@@ -47,6 +47,9 @@ class LinkDetailView(DetailView):
             instance.is_marked = field_value
         elif field == "read_count":
             instance: Link = self.get_object()
+
+            # clicking/opening the url marks it as read
+            instance.is_read = True
             instance.read_count += 1
 
         instance.save()

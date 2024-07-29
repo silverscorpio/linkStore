@@ -52,7 +52,7 @@ function updateCheckboxBackend(val) {
 
 }
 
-function readCount(pk) {
+function readCountAndStatusUpdate(pk) {
     const url = `${pk}/`
     const csrftoken = getCookie('csrftoken');
     let queryParams = new URLSearchParams()
