@@ -9,6 +9,7 @@ from .forms import TopicForm, TagForm, LinkForm
 
 # TODO object and detail object (object exists already in context)
 def landing(request):
+    """Home page with login/register screen"""
     if request.user.is_authenticated:
         return redirect("store:links")
     return render(request, "store/landing.html")
