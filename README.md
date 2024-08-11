@@ -20,6 +20,3 @@
 #### Stack
 
 #### In the pipeline
-
-
-
