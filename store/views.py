@@ -20,10 +20,25 @@ def landing(request):
 def stats(request):
     if request.user.is_authenticated:
         logged_in_user = User.objects.get(id=request.user.id)
+        user_stats = UserStats(user=logged_in_user)
+
+        # note - a simple dict doesn't work, needs a key-value where value is the actual dict of context
+        stat_context = {
+            "stats_data": {
+                "Total Links": user_stats.get_num_links(),
+                "Total Topics": user_stats.get_num_topics(),
+                "Total Tags": user_stats.get_num_tags(),
+                "Links Read": user_stats.get_num_read_links(),
+                "Links Marked": user_stats.get_num_marked_links(),
+                "Topics with most number of Links (top-3)": user_stats.get_topic_with_most_links(),
+                "Topics with most clicked/opened Links (top-3)": user_stats.get_topic_with_max_read_count_link(),
+                "Tags with most number of Links (top-3)": user_stats.get_tag_with_most_links(),
+            }
+        }
         return render(
             request,
             "store/stats.html",
-            context=UserStats(user=logged_in_user).generate_context(),
+            stat_context,
         )
     return render(request, "store/landing.html")
 

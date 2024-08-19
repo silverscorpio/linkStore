@@ -68,15 +68,3 @@ class UserStats:
             .annotate(num_links=Count("tagged_links"))
             .order_by("-num_links")[:3]
         ]
-
-    def generate_context(self) -> dict:
-        return {
-            "num_user_links": self.get_num_links(),
-            "num_user_topics": self.get_num_topics(),
-            "num_user_tags": self.get_num_tags(),
-            "num_links_read": self.get_num_read_links(),
-            "num_links_marked": self.get_num_marked_links(),
-            "topic_with_most_links": self.get_topic_with_most_links(),
-            "topic_with_max_read_count_link": self.get_topic_with_max_read_count_link(),
-            "tag_with_most_links": self.get_tag_with_most_links(),
-        }
