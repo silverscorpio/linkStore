@@ -60,6 +60,7 @@ class Link(models.Model):
         default=0,
     )
     updated_on = models.DateField(auto_now=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def pre_process_link_type(self) -> None:
         if "youtube" in self.url:
