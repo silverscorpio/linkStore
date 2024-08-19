@@ -2,6 +2,46 @@
 {% load static %}
 
 {% block view_content %}
-    <h1>hello</h1>
+    <div class="container-fluid">
+        <h3 class="p-3 m-3">
+            <em>LinkStore</em> Stats
+        </h3>
+        <table class="table table-hover">
+            <tbody>
+            <tr class="table-info">
+                <th scope="row">Total Links</th>
+                <td>{{ num_user_links }}</td>
+            </tr>
+            <tr class="table-info">
+                <th scope="row">Total Topics</th>
+                <td>{{ num_user_topics }}</td>
+            </tr>
+            <tr class="table-info">
+                <th scope="row">Total Tags</th>
+                <td>{{ num_user_tags }}</td>
+            </tr>
+            <tr class="table-info">
+                <th scope="row">Links Read</th>
+                <td>{{ num_links_read }}</td>
+            </tr>
+            <tr class="table-info">
+                <th scope="row">Links Marked</th>
+                <td>{{ num_links_marked }}</td>
+            </tr>
+            <tr class="table-info">
+                <th scope="row">Topics with most number of Links (top-3)</th>
+                <td>{{ topic_with_most_links|join:", " }}</td>
+            </tr>
+            <tr class="table-info">
+                <th scope="row">Topics with most clicked/opened Links (top-3)</th>
+                <td>{{ topic_with_max_read_count_link|join:", " }}</td>
+            </tr>
+            <tr class="table-info">
+                <th scope="row">Tags with most number of Links (top-3)</th>
+                <td>{{ tag_with_most_links|join:", " }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
 
