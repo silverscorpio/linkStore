@@ -41,17 +41,20 @@ class UserStats:
         return Link.objects.filter(owner=self.user, is_marked=True).count()
 
     # most popular topic (top 3) - topic with most links
-    def get_topic_with_most_links(self) -> list[str]:
-        return [
+    def get_topic_with_most_links(self) -> str:
+        req_topics = [
             i.name.capitalize()
             for i in Topic.objects.filter(owner=self.user)
             .annotate(num_links=Count("topic_links"))
             .order_by("-num_links")[:3]
         ]
+        if req_topics:
+            return ", ".join(req_topics)
+        return ""
 
     # most popular topic (top 3) - topic corresponding to link with maximum read count
-    def get_topic_with_max_read_count_link(self) -> list[str]:
-        return [
+    def get_topic_with_max_read_count_link(self) -> str:
+        req_topics = [
             i.name.capitalize()
             for i in Topic.objects.filter(
                 owner=self.user, topic_links__read_count__isnull=False
@@ -59,12 +62,18 @@ class UserStats:
             .annotate(max_read_count=Max("topic_links__read_count"))
             .order_by("-max_read_count")[:3]
         ]
+        if req_topics:
+            return ", ".join(req_topics)
+        return ""
 
     # most popular/used tags (top 3) - tag with most links
-    def get_tag_with_most_links(self) -> list[str]:
-        return [
+    def get_tag_with_most_links(self) -> str:
+        req_tags = [
             i.name.capitalize()
             for i in Tag.objects.filter(owner=self.user)
             .annotate(num_links=Count("tagged_links"))
             .order_by("-num_links")[:3]
         ]
+        if req_tags:
+            return ", ".join(req_tags)
+        return ""

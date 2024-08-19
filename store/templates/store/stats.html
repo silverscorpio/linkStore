@@ -9,13 +9,12 @@
         <table class="table table-hover">
             <tbody>
             {% for k, v in stats_data.items %}
-            <tr class="table-info">
-                <th scope="row">{{ k }}</th>
-                <td>{{ v }}</td>
-            </tr>
-            </tbody>
+                <tr class="table-info">
+                    <th scope="row">{{ k }}</th>
+                    <td>{{ v }}</td>
+                </tr>
+                </tbody>
             {% endfor %}
         </table>
     </div>
 {% endblock %}
-
