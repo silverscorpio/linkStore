@@ -5,6 +5,7 @@
     <tr>
         <th scope="col"><h4>#</h4></th>
         <th scope="col"><h4>Tag</h4></th>
+        <th scope="col"><h4>Total Links</h4></th>
         <th scope="col"><h4>Updated</h4></th>
         <th scope="col"><h4>Created</h4></th>
     </tr>
@@ -17,6 +18,7 @@
                             <a href="{% url 'store:tag-update' tag.pk %}" target="_blank">
                     <img src="{% static 'store/img/edit_icon.svg' %}" alt="edit-link"/>
                 </a></td>
+            <td>{{ tag.tagged_links.all|length }}</td>
             <td>{{ tag.updated_on|date:"d-m-y" }}</td>
             <td>{{ tag.created_on|date:"d-m-y" }}</td>
         </tr>
