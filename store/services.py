@@ -69,7 +69,7 @@ class UserStats:
             .order_by("-num_links")[:3]
         ]
 
-    def generate_stat_context(self) -> dict:
+    def generate_context(self) -> dict:
         return {
             "num_user_links": self.get_num_links(),
             "num_user_topics": self.get_num_topics(),
