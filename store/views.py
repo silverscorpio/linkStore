@@ -20,8 +20,11 @@ def landing(request):
 def stats(request):
     if request.user.is_authenticated:
         logged_in_user = User.objects.get(id=request.user.id)
-        stats_data = UserStats(user=logged_in_user).generate_context()
-        return render(request, "store/stats.html", context=stats_data)
+        return render(
+            request,
+            "store/stats.html",
+            context=UserStats(user=logged_in_user).generate_context(),
+        )
     return render(request, "store/landing.html")
 
 
