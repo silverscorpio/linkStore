@@ -4,7 +4,9 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Link, Topic, Tag
+from django.contrib.auth.models import User
 from .forms import TopicForm, TagForm, LinkForm
+from .services import UserStats
 
 
 # TODO object and detail object (object exists already in context)
@@ -17,7 +19,9 @@ def landing(request):
 
 def stats(request):
     if request.user.is_authenticated:
-        return render(request, "store/stats.html")
+        logged_in_user = User.objects.get(id=request.user.id)
+        stats_data = UserStats(user=logged_in_user).generate_stat_context()
+        return render(request, "store/stats.html", context=stats_data)
     return render(request, "store/landing.html")
 
 
