@@ -15,6 +15,12 @@ def landing(request):
     return render(request, "store/landing.html")
 
 
+def stats(request):
+    if request.user.is_authenticated:
+        return render(request, "store/stats.html")
+    return render(request, "store/landing.html")
+
+
 class LinkListView(ListView):
     def get_queryset(self):
         return Link.objects.filter(topic__owner=self.request.user).order_by(

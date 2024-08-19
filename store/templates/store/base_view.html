@@ -8,6 +8,7 @@
     {% url 'store:link-add' as add_link %}
     {% url 'store:topic-add' as add_topic %}
     {% url 'store:tag-add' as add_tag %}
+    {% url 'store:stats' as stats %}
 
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
@@ -48,7 +49,9 @@
                 </ul>
                 <div>
                     <ul class="navbar-nav me-auto">
-                        <li><a class="nav-link" href="#">Profile | {{ user }}</a></li>
+                        <li><a class="nav-link {% if request.path == stats %}active{% endif %}"
+                               href="{% url 'store:stats' %}">Stats</a></li>
+                        <li><a class="nav-link" href="#">Profile</a></li>
                         <li>
                             <form method="post" action="{% url 'users:logout' %}">
                                 {% csrf_token %}

@@ -5,6 +5,7 @@ app_name = "store"
 
 urlpatterns = [
     path("", views.landing, name="landing"),
+    path("stats/", views.stats, name="stats"),
     # List views
     path("links/", views.LinkListView.as_view(), name="links"),
     path("topics/", views.TopicListView.as_view(), name="topics"),
