@@ -1,8 +1,8 @@
-{% extends 'store/base.html' %}
+{% extends 'store/base_landing_login.html' %}
 {% load static %}
-{% block content %}
 
-    <img src="{% static 'store/img/landing_bg.jpg' %}" class="img-fluid" alt="landing-page-bg">
+
+{% block content_landing_login %}
     <div class="container-fluid
 position-absolute top-50 start-50 translate-middle"
     >
@@ -32,10 +32,10 @@ position-absolute top-50 start-50 translate-middle"
                     <div class="p-2 g-col-6">
                         <button name="submit" class="btn btn-primary btn-sm">Log in</button>
                         <input type="hidden" name="next" value="{% url 'store:links' %}"/>
-                        
+
                     </div>
                 </div>
             </form>
         </div>
     </div>
-{% endblock content %}
+{% endblock %}

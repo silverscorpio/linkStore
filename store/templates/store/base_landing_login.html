@@ -1,0 +1,8 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+
+    <img src="{% static 'store/img/landing_bg.jpg' %}" class="vw-100 vh-100" alt="landing-page-bg">
+    {% block content_landing_login %}
+    {% endblock %}
+{% endblock content %}
