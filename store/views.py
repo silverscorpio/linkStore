@@ -45,19 +45,17 @@ def stats(request):
 
 class LinkListView(ListView):
     def get_queryset(self):
-        return Link.objects.filter(topic__owner=self.request.user).order_by(
-            "-read_count"
-        )
+        return Link.objects.filter(topic__owner=self.request.user).order_by("-saved_on")
 
 
 class TopicListView(ListView):
     def get_queryset(self):
-        return Topic.objects.filter(owner=self.request.user).order_by("-updated_on")
+        return Topic.objects.filter(owner=self.request.user).order_by("-created_on")
 
 
 class TagListView(ListView):
     def get_queryset(self):
-        return Tag.objects.filter(owner=self.request.user).order_by("-updated_on")
+        return Tag.objects.filter(owner=self.request.user).order_by("-created_on")
 
 
 class LinkDetailView(DetailView):
