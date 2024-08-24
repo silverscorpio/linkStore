@@ -4,8 +4,6 @@ Web application for storing and managing link/url-based information
 
 #### An approach to solving to a personal problem with storing info gathered from the web
 
-*Ongoing*
-
 ---
 
 ### Table of Contents
@@ -13,6 +11,7 @@ Web application for storing and managing link/url-based information
 - [Purpose](#purpose)
 - [Features](#features)
 - [Stack](#stack)
+- [Status](#status)
 
 ---
 
@@ -29,13 +28,22 @@ Web application for storing and managing link/url-based information
 
 #### Features
 
+- Minimalist method for note-taking/referencing/bookmarking from the web
 - Allows storing info using the links for later reference
 - Accompanying metadata - stored on, user-linked etc.
+- Allows automatic extraction of title from URL, link type processing in most cases
 - Authentication system (BasicAuth)
 - Links in linkstore can be tagged as well grouped into topics
 - Can be read and marked/starred
 - If needed, personal notes per link can be added and stored
+- Links, topics and tags have the CRUD functionality allowing their management
 
 #### Stack
 
 Python & Django, PostgreSQL for DB, Bootstrap (django-bootstrap) for frontend styling
+
+#### Status
+
+- project is being maintained and actively worked upon
+- new frontend - design, views etc.
+- backend - new features like search etc.
