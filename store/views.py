@@ -7,6 +7,7 @@ from .models import Link, Topic, Tag
 from django.contrib.auth.models import User
 from .forms import TopicForm, TagForm, LinkForm
 from .services import UserStats
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # TODO object and detail object (object exists already in context)
@@ -114,7 +115,7 @@ class BaseTagView:
 
 
 # Link
-class LinkCreateView(BaseLinkView, CreateView):
+class LinkCreateView(LoginRequiredMixin, BaseLinkView, CreateView):
     form_class = LinkForm
 
     def form_valid(self, form):
@@ -122,16 +123,16 @@ class LinkCreateView(BaseLinkView, CreateView):
         return super().form_valid(form)
 
 
-class LinkUpdateView(BaseLinkView, UpdateView):
+class LinkUpdateView(LoginRequiredMixin, BaseLinkView, UpdateView):
     form_class = LinkForm
 
 
-class LinkDeleteView(BaseLinkView, DeleteView):
+class LinkDeleteView(LoginRequiredMixin, BaseLinkView, DeleteView):
     template_name = "store/delete_view.html"
 
 
 # Topic
-class TopicCreateView(BaseTopicView, CreateView):
+class TopicCreateView(LoginRequiredMixin, BaseTopicView, CreateView):
     form_class = TopicForm
 
     def form_valid(self, form):
@@ -139,16 +140,16 @@ class TopicCreateView(BaseTopicView, CreateView):
         return super().form_valid(form)
 
 
-class TopicUpdateView(BaseTopicView, UpdateView):
+class TopicUpdateView(LoginRequiredMixin, BaseTopicView, UpdateView):
     form_class = TopicForm
 
 
-class TopicDeleteView(BaseTopicView, DeleteView):
+class TopicDeleteView(LoginRequiredMixin, BaseTopicView, DeleteView):
     template_name = "store/delete_view.html"
 
 
 # Tag
-class TagCreateView(BaseTagView, CreateView):
+class TagCreateView(LoginRequiredMixin, BaseTagView, CreateView):
     form_class = TagForm
 
     def form_valid(self, form):
@@ -156,9 +157,9 @@ class TagCreateView(BaseTagView, CreateView):
         return super().form_valid(form)
 
 
-class TagUpdateView(BaseTagView, UpdateView):
+class TagUpdateView(LoginRequiredMixin, BaseTagView, UpdateView):
     form_class = TagForm
 
 
-class TagDeleteView(BaseTagView, DeleteView):
+class TagDeleteView(LoginRequiredMixin, BaseTagView, DeleteView):
     template_name = "store/delete_view.html"
