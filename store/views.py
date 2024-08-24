@@ -119,6 +119,10 @@ class BaseTagView:
 class LinkCreateView(BaseLinkView, CreateView):
     form_class = LinkForm
 
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
 
 class LinkUpdateView(BaseLinkView, UpdateView):
     form_class = LinkForm
@@ -132,6 +136,10 @@ class LinkDeleteView(BaseLinkView, DeleteView):
 class TopicCreateView(BaseTopicView, CreateView):
     form_class = TopicForm
 
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
 
 class TopicUpdateView(BaseTopicView, UpdateView):
     form_class = TopicForm
@@ -144,6 +152,10 @@ class TopicDeleteView(BaseTopicView, DeleteView):
 # Tag
 class TagCreateView(BaseTagView, CreateView):
     form_class = TagForm
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
 
 
 class TagUpdateView(BaseTagView, UpdateView):
