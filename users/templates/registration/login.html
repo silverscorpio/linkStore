@@ -16,7 +16,7 @@ position-absolute top-50 start-50 translate-middle"
             <form method="post" action="{% url 'users:login' %}">
                 {% csrf_token %}
 
-                <div class="grid gap-0 row-gap-3">
+                <div class="d-flex flex-column">
                     <div>
                         <label for="for_username" class="form-label mt-4">Username</label>
                         <input type="text" name="username" class="form-control" id="for_username"
