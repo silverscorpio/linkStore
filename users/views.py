@@ -21,6 +21,7 @@ def register(request):
 
 
 class UserPasswordChangeView(PasswordChangeView):
+    # TODO change in login template - remove the pwd change from there to the profile page when done
     success_url = reverse_lazy("users:password_change_done")
 
 
