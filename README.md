@@ -1,8 +1,8 @@
-## Link Store
+# LinkStore
 
 Web application for storing and managing link/url-based information
 
-#### An approach to solving to a personal problem with storing info gathered from the web
+#### A web-based approach to solving to a personal problem with storing info gathered from around the web
 
 ---
 
@@ -23,7 +23,7 @@ Web application for storing and managing link/url-based information
   boiled down to storing the URL/Link to that page with some notes, tags with further categorization under different
   topics
 - Attempted to achieve this with Evernote, then later migrated to Notion and finally Apple Notes, have now tons of Links
-  in different notes but still not properly organised - unhappy & not satisfied 😕
+  in different notes but still not properly organised - unhappy & not satisfied
 - Eventually after many thoughts and a lot of thinking, came up with the *LinkStore* idea
 
 #### Features
@@ -34,13 +34,15 @@ Web application for storing and managing link/url-based information
 - Allows automatic extraction of title from URL, link type processing in most cases
 - Authentication system (BasicAuth)
 - Links in linkstore can be tagged as well grouped into topics
-- Can be read and marked/starred
+- Links can be read and marked/starred besides providing a read count (how often a link is opened)
+- Provides stats for the user's _LinkStore_ such as most popular topics, tags etc.
 - If needed, personal notes per link can be added and stored
-- Links, topics and tags have the CRUD functionality allowing their management
+- Links, topics and tags have the CRUD functionality allowing for their easy management
+- Intuitive, easy-to-use UI and superfast
 
 #### Stack
 
-Python & Django, PostgreSQL for DB, Bootstrap (django-bootstrap) for frontend styling
+Python & Django, PostgreSQL for DB, Bootstrap (django-bootstrap) for frontend styling along with HTML, CSS, Javascript
 
 #### Status
 
