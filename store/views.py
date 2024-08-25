@@ -44,22 +44,22 @@ def stats(request):
     return render(request, "store/landing.html")
 
 
-class LinkListView(ListView):
+class LinkListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Link.objects.filter(owner=self.request.user).order_by("-saved_on")
 
 
-class TopicListView(ListView):
+class TopicListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Topic.objects.filter(owner=self.request.user).order_by("-created_on")
 
 
-class TagListView(ListView):
+class TagListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Tag.objects.filter(owner=self.request.user).order_by("-created_on")
 
 
-class LinkDetailView(DetailView):
+class LinkDetailView(LoginRequiredMixin, DetailView):
     model = Link
 
     # TODO refactor this into separate func calls in JS (decouple)
