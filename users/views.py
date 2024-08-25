@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
+from django.urls import reverse_lazy
 
 
 def register(request):
@@ -16,3 +18,11 @@ def register(request):
 
     context = {"form": form}
     return render(request, "registration/register.html", context)
+
+
+class UserPasswordChangeView(PasswordChangeView):
+    success_url = reverse_lazy("users:password_change_done")
+
+
+class UserPasswordChangeDoneView(PasswordChangeDoneView):
+    pass
