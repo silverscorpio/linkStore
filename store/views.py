@@ -33,6 +33,10 @@ def profile(request):
     return render(request, "store/landing.html")
 
 
+def profile_edit(request):
+    return render(request, "store/profile_edit.html")
+
+
 def stats(request):
     if request.user.is_authenticated:
         logged_in_user = User.objects.get(id=request.user.id)

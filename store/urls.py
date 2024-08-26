@@ -1,6 +1,6 @@
 from django.urls import path
 from store import views
-from store.views import profile
+from store.views import profile, profile_edit
 
 app_name = "store"
 
@@ -30,4 +30,5 @@ urlpatterns = [
     ),
     path("tags/<int:pk>/delete/", views.TagDeleteView.as_view(), name="tag-delete"),
     path("profile/", profile, name="profile"),
+    path("profile_edit/", profile_edit, name="profile-edit"),
 ]
