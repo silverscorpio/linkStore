@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.views import (
     PasswordChangeView,
@@ -9,14 +8,15 @@ from django.contrib.auth.views import (
     PasswordResetConfirmView,
 )
 from django.urls import reverse_lazy
+from .forms import CustomUserCreationForm
 
 
 def register(request):
     """Registration process for a new user"""
     if request.method != "POST":
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     else:
-        form = UserCreationForm(data=request.POST)
+        form = CustomUserCreationForm(data=request.POST)
         if form.is_valid():
             new_user = form.save()
             login(request, new_user)
