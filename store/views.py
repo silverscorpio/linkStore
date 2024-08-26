@@ -122,6 +122,11 @@ class LinkCreateView(LoginRequiredMixin, BaseLinkView, CreateView):
         form.instance.owner = self.request.user
         return super().form_valid(form)
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["user"] = self.request.user
+        return kwargs
+
 
 class LinkUpdateView(LoginRequiredMixin, BaseLinkView, UpdateView):
     form_class = LinkForm

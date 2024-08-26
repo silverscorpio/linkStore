@@ -10,6 +10,12 @@ from .models import Link, Topic, Tag
 
 
 class LinkForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop("user", None)
+        super().__init__(*args, **kwargs)
+        self.fields["topic"].queryset = Topic.objects.filter(owner=user)
+        self.fields["tag"].queryset = Tag.objects.filter(owner=user)
+
     class Meta:
         model = Link
         fields = [
