@@ -3,23 +3,56 @@
 {% block content_list %}
     {% csrf_token %}
     <script src="{% static 'store/js/utilFunctions.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
     <thead class="h6">
     <tr>
-        <th scope="col"><h5>#</h5></th>
-        <th scope="col"><h5>Link</h5></th>
-        <th scope="col"><h5>Topic</h5></th>
-        <th scope="col"><h5>Updated</h5></th>
-        <th scope="col"><h5>Read#</h5></th>
-        <th scope="col"><h5>Saved</h5></th>
-        <th scope="col"><h5>Type</h5></th>
-        <th scope="col"><h5>Read?</h5></th>
-        <th scope="col"><h5>Marked?</h5></th>
+        <th scope="col"><h4>#</h4></th>
+        <th scope="col"><h4>Link</h4></th>
+        <th scope="col"><h4>Topic</h4></th>
+        <th scope="col"><h4>Updated</h4></th>
+        <th scope="col"><h4>Read#</h4></th>
+        <th scope="col"><h4>Saved</h4></th>
+        <th scope="col"><h4>Type</h4></th>
+        <th scope="col"><h4>Read?</h4></th>
+        <th scope="col"><h4>Marked?</h4></th>
+    </tr>
+    <tr class="sort-filter">
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th>
+            <label for="topic-filter"></label>
+            <select name="topic-filter" id="topic-filter">
+                <option value="">-----</option>
+            </select>
+        </th>
+        <th scope="col">
+            <img src="{% static 'store/img/sort-ascending.svg' %}" alt="sort-asc"/>
+            <img src="{% static 'store/img/sort-descending.svg' %}" alt="sort-desc"/>
+        </th>
+        <th scope="col">
+            <img src="{% static 'store/img/sort-ascending.svg' %}" alt="sort-asc"/>
+            <img src="{% static 'store/img/sort-descending.svg' %}" alt="sort-desc"/></th>
+        <th scope="col">
+            <img src="{% static 'store/img/sort-ascending.svg' %}" alt="sort-asc"/>
+            <img src="{% static 'store/img/sort-descending.svg' %}" alt="sort-desc"/></th>
+        <th scope="col">
+            <label for="type-filter"></label>
+            <select name="type-filter" id="type-filter">
+                <option value="">-----</option>
+            </select>
+        </th>
+        <th scope="col">
+            <img src="{% static 'store/img/sort-ascending.svg' %}" alt="sort-asc"/>
+            <img src="{% static 'store/img/sort-descending.svg' %}" alt="sort-desc"/></th>
+        <th scope="col">
+            <img src="{% static 'store/img/sort-ascending.svg' %}" alt="sort-asc"/>
+            <img src="{% static 'store/img/sort-descending.svg' %}" alt="sort-desc"/></th>
     </tr>
     </thead>
     <tbody>
     {% for link in link_list %}
         <tr>
-            <th scope="row">{{ forloop.counter }}</th>
+            <td><strong>{{ forloop.counter }}</strong></td>
             <td>
                 <a href="{{ link.url }}" target="_blank" onclick="readCountAndStatusUpdate({{ link.pk }})">
                     {{ link.title | lower | slice:":30" }}
