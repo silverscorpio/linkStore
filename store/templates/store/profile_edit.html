@@ -4,24 +4,29 @@
 {% block view_content %}
     <div class="container-fluid">
         <h3 class="p-3 m-3">
-            Profile
+            Edit Profile
         </h3>
-        <div class="p-3 d-flex justify-content-end">
-            <a href="{% url 'store:profile-edit' %}"><strong>Edit Profile</strong></a>
-        </div>
-        <table class="table table-hover">
-            <tbody>
-            {% for k, v in user_data.items %}
-                <tr class="table-info">
-                    <th scope="row">{{ k }}</th>
-                    <td>{{ v }}</td>
-                </tr>
-                </tbody>
-            {% endfor %}
-        </table>
+        <div class="d-flex p-3 m-3">
+            <div class="flex-fill">
+                <form method="post" class="m-4">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="fieldWrapper p-2">
+                            {{ field.errors }}
+                            <h5>{{ field.label_tag }}</h5>
+                            <div class="d-flex flex-row">
+                                {{ field }}
+                            </div>
 
-        <div class="p-3 d-flex justify-content-start">
-            <a href="{% url 'users:password_change' %}"><strong>Change password</strong></a>
+                        </div>
+                    {% endfor %}
+                    <div class="m-3">
+                        <button type="submit" class="btn btn-primary btn">
+                            Update Profile
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

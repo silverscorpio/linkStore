@@ -5,8 +5,10 @@ from django.forms import (
     Select,
     SelectMultiple,
     Textarea,
+    EmailInput,
 )
 from .models import Link, Topic, Tag
+from django.contrib.auth.models import User
 
 
 class LinkForm(ModelForm):
@@ -83,6 +85,33 @@ class TagForm(ModelForm):
         ]
         widgets = {
             "name": TextInput(
+                attrs={
+                    "class": "form-control w-50 m-2",
+                }
+            ),
+        }
+
+
+class ProfileEditForm(ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            "first_name",
+            "last_name",
+            "email",
+        ]
+        widgets = {
+            "first_name": TextInput(
+                attrs={
+                    "class": "form-control w-50 m-2",
+                }
+            ),
+            "last_name": TextInput(
+                attrs={
+                    "class": "form-control w-50 m-2",
+                }
+            ),
+            "email": EmailInput(
                 attrs={
                     "class": "form-control w-50 m-2",
                 }

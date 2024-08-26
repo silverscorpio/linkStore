@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Link, Topic, Tag
 from django.contrib.auth.models import User
-from .forms import TopicForm, TagForm, LinkForm
+from .forms import TopicForm, TagForm, LinkForm, ProfileEditForm
 from .services import UserStats
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -34,7 +34,24 @@ def profile(request):
 
 
 def profile_edit(request):
-    return render(request, "store/profile_edit.html")
+    if request.method != "POST":
+        logged_in_user = User.objects.get(id=request.user.id)
+        form = ProfileEditForm(
+            initial={
+                "first_name": logged_in_user.first_name,
+                "last_name": logged_in_user.last_name,
+                "email": logged_in_user.email,
+            }
+        )
+    else:
+        form = ProfileEditForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("store:profile")
+
+    context = {"form": form}
+
+    return render(request, "store/profile_edit.html", context=context)
 
 
 def stats(request):
