@@ -3,6 +3,17 @@
 
 {% block view_content %}
     <div class="container-fluid">
+        <div class="p-1 m-2 d-flex justify-content-end">
+            <div class="d-flex">
+                <label for="search-box"></label>
+                <input type="search" id="search-box" placeholder="Search" name="q" class="form-control me-sm-2">
+            </div>
+            <div class="p-1">
+                <button class="btn btn-primary btn-sm">Search</button>
+            </div>
+        </div>
+
+
         <table class="table table-hover table-borderless">
             {% block content_list %}
             {% endblock %}
