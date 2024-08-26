@@ -1,0 +1,23 @@
+{% extends 'store/base_view.html' %}
+{% load static %}
+
+{% block view_content %}
+    <div class="container-fluid">
+        <h3 class="p-3 m-3">
+            Profile
+        </h3>
+        <table class="table table-hover">
+            <tbody>
+            {% for k, v in user_data.items %}
+                <tr class="table-info">
+                    <th scope="row">{{ k }}</th>
+                    <td>{{ v }}</td>
+                </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="p-3 d-flex justify-content-start">
+        <a href="{% url 'users:password_change' %}"><strong>Change password</strong></a>
+    </div>
+{% endblock %}

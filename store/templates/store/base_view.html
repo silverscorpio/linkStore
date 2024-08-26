@@ -51,7 +51,7 @@
                     <ul class="navbar-nav me-auto">
                         <li><a class="nav-link {% if request.path == stats %}active{% endif %}"
                                href="{% url 'store:stats' %}">Stats</a></li>
-                        <li><a class="nav-link" href="#">Profile</a></li>
+                        <li><a class="nav-link" href="{% url 'store:profile' %}">Profile</a></li>
                         <li>
                             <form method="post" action="{% url 'users:logout' %}">
                                 {% csrf_token %}

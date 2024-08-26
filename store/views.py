@@ -18,6 +18,21 @@ def landing(request):
     return render(request, "store/landing.html")
 
 
+def profile(request):
+    if request.user.is_authenticated:
+        logged_in_user = User.objects.get(id=request.user.id)
+        context = {
+            "user_data": {
+                "username": logged_in_user.username,
+                "First Name": logged_in_user.first_name,
+                "Last Name": logged_in_user.last_name,
+                "Email": logged_in_user.email,
+            }
+        }
+        return render(request, "store/profile.html", context=context)
+    return render(request, "store/landing.html")
+
+
 def stats(request):
     if request.user.is_authenticated:
         logged_in_user = User.objects.get(id=request.user.id)

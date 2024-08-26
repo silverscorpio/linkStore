@@ -1,5 +1,6 @@
 from django.urls import path
 from store import views
+from store.views import profile
 
 app_name = "store"
 
@@ -28,4 +29,5 @@ urlpatterns = [
         "topics/<int:pk>/delete/", views.TopicDeleteView.as_view(), name="topic-delete"
     ),
     path("tags/<int:pk>/delete/", views.TagDeleteView.as_view(), name="tag-delete"),
+    path("profile/", profile, name="profile"),
 ]
