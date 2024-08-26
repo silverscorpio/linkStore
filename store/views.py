@@ -123,8 +123,9 @@ class LinkCreateView(LoginRequiredMixin, BaseLinkView, CreateView):
         return super().form_valid(form)
 
     def get_form_kwargs(self):
+        # inject the user for choice fields queryset
         kwargs = super().get_form_kwargs()
-        kwargs["user"] = self.request.user
+        kwargs["user"] = self.request.user  # user id
         return kwargs
 
 
