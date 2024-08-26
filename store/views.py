@@ -34,8 +34,8 @@ def profile(request):
 
 
 def profile_edit(request):
+    logged_in_user = User.objects.get(id=request.user.id)
     if request.method != "POST":
-        logged_in_user = User.objects.get(id=request.user.id)
         form = ProfileEditForm(
             initial={
                 "first_name": logged_in_user.first_name,
@@ -44,13 +44,12 @@ def profile_edit(request):
             }
         )
     else:
-        form = ProfileEditForm(data=request.POST)
+        form = ProfileEditForm(data=request.POST, instance=logged_in_user)
         if form.is_valid():
             form.save()
             return redirect("store:profile")
 
     context = {"form": form}
-
     return render(request, "store/profile_edit.html", context=context)
 
 
