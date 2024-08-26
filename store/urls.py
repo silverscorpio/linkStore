@@ -29,6 +29,7 @@ urlpatterns = [
         "topics/<int:pk>/delete/", views.TopicDeleteView.as_view(), name="topic-delete"
     ),
     path("tags/<int:pk>/delete/", views.TagDeleteView.as_view(), name="tag-delete"),
+    # Profile
     path("profile/", profile, name="profile"),
     path("profile_edit/", profile_edit, name="profile-edit"),
 ]
