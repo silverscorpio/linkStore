@@ -1,8 +1,6 @@
 # LinkStore
 
-Web application for storing and managing link/url-based information
-
-#### A web-based approach to solving to a personal problem with storing info gathered from around the web
+Web application for storing and managing link/url-based information gathered from around the web
 
 ---
 
