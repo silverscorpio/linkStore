@@ -1,6 +1,7 @@
 {% extends 'store/base_list.html' %}
 {% load static %}
 {% block content_list %}
+    <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
     <thead class="h6">
     <tr>
         <th scope="col"><h4>#</h4></th>
@@ -8,6 +9,20 @@
         <th scope="col"><h4>Total Links</h4></th>
         <th scope="col"><h4>Updated</h4></th>
         <th scope="col"><h4>Created</h4></th>
+    </tr>
+    <tr class="sort-filter">
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col">
+            <img src="{% static 'store/img/sort-ascending.svg' %}" alt="sort-asc"/>
+            <img src="{% static 'store/img/sort-descending.svg' %}" alt="sort-desc"/>
+        </th>
+        <th scope="col">
+            <img src="{% static 'store/img/sort-ascending.svg' %}" alt="sort-asc"/>
+            <img src="{% static 'store/img/sort-descending.svg' %}" alt="sort-desc"/></th>
+        <th scope="col">
+            <img src="{% static 'store/img/sort-ascending.svg' %}" alt="sort-asc"/>
+            <img src="{% static 'store/img/sort-descending.svg' %}" alt="sort-desc"/></th>
     </tr>
     </thead>
     <tbody>
