@@ -2,7 +2,9 @@
 {% load static %}
 
 {% block content_list %}
-    <table class="table table-hover table-borderless" id="listTable" style="width:100%">
+    <table class="table table-hover table-striped table-borderless" 
+           id="listTable" 
+           style="width:100%">
         {% csrf_token %}
         <thead>
         <tr>
@@ -31,9 +33,9 @@
 
                 </td>
                 <td>{{ link.topic | lower }}</td>
-                <td>{{ link.updated_on|date:"d-m-y" }}</td>
+                <td>{{ link.updated_on|date:"j M y" }}</td>
                 <td>{{ link.read_count }}</td>
-                <td>{{ link.saved_on|date:"d-m-y" }}</td>
+                <td>{{ link.saved_on|date:"j M y" }}</td>
                 <td>{{ link.type }}</td>
                 <td>
                     <input type="checkbox"
