@@ -1,42 +1,31 @@
 {% extends 'store/base_list.html' %}
 {% load static %}
 {% block content_list %}
-    <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
-    <thead class="h6">
-    <tr>
-        <th scope="col"><h4>#</h4></th>
-        <th scope="col"><h4>Topic</h4></th>
-        <th scope="col"><h4>Total Links</h4></th>
-        <th scope="col"><h4>Updated</h4></th>
-        <th scope="col"><h4>Created</h4></th>
-    </tr>
-    <tr class="sort-filter">
-        <th scope="col"></th>
-        <th scope="col"></th>
-        <th scope="col">
-            <img src="{% static 'store/img/sort-ascending.svg' %}" alt="sort-asc"/>
-            <img src="{% static 'store/img/sort-descending.svg' %}" alt="sort-desc"/>
-        </th>
-        <th scope="col">
-            <img src="{% static 'store/img/sort-ascending.svg' %}" alt="sort-asc"/>
-            <img src="{% static 'store/img/sort-descending.svg' %}" alt="sort-desc"/></th>
-        <th scope="col">
-            <img src="{% static 'store/img/sort-ascending.svg' %}" alt="sort-asc"/>
-            <img src="{% static 'store/img/sort-descending.svg' %}" alt="sort-desc"/></th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for topic in topic_list %}
+    <table class="table table-hover table-striped table-borderless"
+           id="listTable"
+           style="width:100%">
+        <thead class="h6">
         <tr>
-            <th scope="row">{{ forloop.counter }}</th>
-            <td>{{ topic.name | lower }}
-                <a href="{% url 'store:topic-update' topic.pk %}" target="_blank">
-                    <img src="{% static 'store/img/edit_icon.svg' %}" alt="edit-link"/>
-                </a></td>
-            <td>{{ topic.topic_links.all|length }}</td>
-            <td>{{ topic.updated_on|date:"d-m-y" }}</td>
-            <td>{{ topic.created_on|date:"d-m-y" }}</td>
+            <th scope="col"><h4>#</h4></th>
+            <th scope="col"><h4>Topic</h4></th>
+            <th scope="col"><h4>Total Links</h4></th>
+            <th scope="col"><h4>Updated</h4></th>
+            <th scope="col"><h4>Created</h4></th>
         </tr>
-    {% endfor %}
-    </tbody>
+        </thead>
+        <tbody>
+        {% for topic in topic_list %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ topic.name | lower }}
+                    <a href="{% url 'store:topic-update' topic.pk %}" target="_blank">
+                        <img src="{% static 'store/img/edit_icon.svg' %}" alt="edit-link"/>
+                    </a></td>
+                <td>{{ topic.topic_links.all|length }}</td>
+                <td>{{ topic.updated_on|date:"j M y" }}</td>
+                <td>{{ topic.created_on|date:"j M y" }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
