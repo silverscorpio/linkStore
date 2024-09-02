@@ -37,13 +37,15 @@ Web application for storing and managing link/url-based information gathered fro
 - If needed, personal notes per link can be added and stored
 - Links, topics and tags have the CRUD functionality allowing for their easy management
 - Intuitive, easy-to-use UI and superfast
+- Other functionalities such as sorting and searching the _LinkStore_
 
 #### Stack
 
-Python & Django, PostgreSQL for DB, Bootstrap (django-bootstrap) for frontend styling along with HTML, CSS, Javascript
+Python & Django, PostgreSQL for DB, Bootstrap (django-bootstrap) for frontend styling along with HTML, CSS, Javascript,
+DataTables
 
 #### Status
 
 - project is being maintained and actively worked upon
 - new frontend - design, views etc.
-- backend - new features like search etc.
+- backend - new features - topic-grouped view etc.
