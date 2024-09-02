@@ -6,7 +6,7 @@ let table = new DataTable('#listTable', {
         topStart: 'pageLength',
         topEnd: {
             search: {
-                placeholder: 'Search LinkStore',
+                placeholder: 'Type to search',
             }
         },
         bottomStart: 'info',
