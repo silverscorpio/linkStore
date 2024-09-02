@@ -7,3 +7,6 @@ store/data/*.json
 store/data/*.txt
 users/__pycache__/
 notes.MD
+.DS_Store
+store/.DS_Store/
+users/.DS_Store

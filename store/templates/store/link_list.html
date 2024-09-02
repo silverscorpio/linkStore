@@ -1,60 +1,64 @@
 {% extends 'store/base_list.html' %}
 {% load static %}
-{% block content_list %}
-    {% csrf_token %}
-    <script src="{% static 'store/js/utilFunctions.js' %}"></script>
-    <thead class="h6">
-    <tr>
-        <th scope="col"><h5>#</h5></th>
-        <th scope="col"><h5>Link</h5></th>
-        <th scope="col"><h5>Topic</h5></th>
-        <th scope="col"><h5>Updated</h5></th>
-        <th scope="col"><h5>Read#</h5></th>
-        <th scope="col"><h5>Saved</h5></th>
-        <th scope="col"><h5>Type</h5></th>
-        <th scope="col"><h5>Read?</h5></th>
-        <th scope="col"><h5>Marked?</h5></th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for link in link_list %}
-        <tr>
-            <th scope="row">{{ forloop.counter }}</th>
-            <td>
-                <a href="{{ link.url }}" target="_blank" onclick="readCountAndStatusUpdate({{ link.pk }})">
-                    {{ link.title | lower | slice:":30" }}
-                </a>
-                <a href="{% url 'store:link-update' link.pk %}" target="_blank">
-                    <img src="{% static 'store/img/edit_icon.svg' %}" alt="edit-link"/>
-                </a>
 
-            </td>
-            <td>{{ link.topic | lower }}</td>
-            <td>{{ link.updated_on|date:"d-m-y" }}</td>
-            <td>{{ link.read_count }}</td>
-            <td>{{ link.saved_on|date:"d-m-y" }}</td>
-            <td>{{ link.type }}</td>
-            <td>
-                <input type="checkbox"
-                       id="is_read_{{ link.pk }}"
-                       name="read_{{ link.pk }}"
-                       value="{{ link.pk }}"
-                        {% if link.is_read %} checked="checked" {% endif %}
-                       onchange="updateCheckboxBackend('read_{{ link.pk }}')"
-                />
-                <label for="is_read_{{ link.pk }}"></label>
-            </td>
-            <td>
-                <input type="checkbox"
-                       id="is_marked_{{ link.pk }}"
-                       name="marked_{{ link.pk }}"
-                       value="{{ link.pk }}"
-                        {% if link.is_marked %} checked="checked" {% endif %}
-                       onchange="updateCheckboxBackend('marked_{{ link.pk }}')"
-                />
-                <label for="is_marked_{{ link.pk }}"></label>
-            </td>
+{% block content_list %}
+    <table class="table table-hover table-striped table-borderless" 
+           id="listTable" 
+           style="width:100%">
+        {% csrf_token %}
+        <thead class="h6">
+        <tr>
+            <th scope="col"><h4>#</h4></th>
+            <th scope="col"><h4>Link</h4></th>
+            <th scope="col"><h4>Topic</h4></th>
+            <th scope="col"><h4>Updated</h4></th>
+            <th scope="col"><h4>Read#</h4></th>
+            <th scope="col"><h4>Saved</h4></th>
+            <th scope="col"><h4>Type</h4></th>
+            <th scope="col"><h4>Read?</h4></th>
+            <th scope="col"><h4>Marked?</h4></th>
         </tr>
-    {% endfor %}
-    </tbody>
+        </thead>
+        <tbody>
+        {% for link in link_list %}
+            <tr>
+                <td><strong>{{ forloop.counter }}</strong></td>
+                <td>
+                    <a href="{{ link.url }}" target="_blank" onclick="readCountAndStatusUpdate({{ link.pk }})">
+                        {{ link.title | lower | slice:":30" }}
+                    </a>
+                    <a href="{% url 'store:link-update' link.pk %}" target="_blank">
+                        <img src="{% static 'store/img/edit_icon.svg' %}" alt="edit-link"/>
+                    </a>
+
+                </td>
+                <td>{{ link.topic | lower }}</td>
+                <td>{{ link.updated_on|date:"j M y" }}</td>
+                <td>{{ link.read_count }}</td>
+                <td>{{ link.saved_on|date:"j M y" }}</td>
+                <td>{{ link.type }}</td>
+                <td>
+                    <input type="checkbox"
+                           id="is_read_{{ link.pk }}"
+                           name="read_{{ link.pk }}"
+                           value="{{ link.pk }}"
+                            {% if link.is_read %} checked="checked" {% endif %}
+                           onchange="updateCheckboxBackend('read_{{ link.pk }}')"
+                    />
+                    <label for="is_read_{{ link.pk }}"></label>
+                </td>
+                <td>
+                    <input type="checkbox"
+                           id="is_marked_{{ link.pk }}"
+                           name="marked_{{ link.pk }}"
+                           value="{{ link.pk }}"
+                            {% if link.is_marked %} checked="checked" {% endif %}
+                           onchange="updateCheckboxBackend('marked_{{ link.pk }}')"
+                    />
+                    <label for="is_marked_{{ link.pk }}"></label>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

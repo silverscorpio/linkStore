@@ -2,11 +2,17 @@
 {% load static %}
 
 {% block view_content %}
-    <div class="container-fluid">
-        <table class="table table-hover table-borderless">
-            {% block content_list %}
-            {% endblock %}
-        </table>
-    </div>
-{% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.5.0/build/global/luxon.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
+    <script src="{% static 'store/js/utilFunctions.js' %}"></script>
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.5/css/dataTables.bootstrap5.css"/>
+    <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
 
+    <div class="container-fluid">
+        {% block content_list %}
+        {% endblock %}
+    </div>
+    
+    <script src="{% static 'store/js/list_view_datatables_init.js' %}"></script>
+{% endblock %}
